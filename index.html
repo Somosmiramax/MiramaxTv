@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MIRAMAX TV - Señal en Vivo y Noticias</title>
+    <!-- Librería HLS para reproducir la señal de TV -->
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <style>
+        :root {
+            --tv-orange: #ff6600;
+            --tv-orange-dark: #cc5200;
+            --dark-bg: #0b0b0b;
+            --card-bg: #161616;
+            --card-border: #262626;
+            --text-main: #ffffff;
+            --text-muted: #999999;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            margin: 0;
+            background-color: var(--dark-bg);
+            color: var(--text-main);
+        }
+
+        /* Barra de Noticias en Movimiento (Ticker estilo TV) */
+        .breaking-news {
+            background-color: #000;
+            color: white;
+            padding: 10px 0;
+            border-bottom: 2px solid var(--tv-orange);
+            font-size: 14px;
+            white-space: nowrap;
+            overflow: hidden;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+        }
+
+        .breaking-badge {
+            background-color: var(--tv-orange);
+            color: white;
+            padding: 10px 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 13px;
+            letter-spacing: 1px;
+            margin-right: 15px;
+            z-index: 2;
+        }
+
+        .breaking-ticker {
+            display: inline-block;
+            animation: marquee 25s linear infinite;
+            color: #ddd;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* Cabecera del Canal */
+        header {
+            background: linear-gradient(to bottom, #141414, #0b0b0b);
+            padding: 15px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #222;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-container img {
+            height: 55px;
+            width: 55px;
+            border-radius: 50%;
+            border: 2px solid var(--tv-orange);
+            object-fit: cover;
+        }
+
+        .channel-name {
+            font-size: 24px;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            color: white;
+        }
+
+        .channel-name span {
+            color: var(--tv-orange);
+        }
+
+        .live-tag-header {
+            background-color: #e50914;
+            color: white;
+            padding: 6px 14px;
+            font-size: 12px;
+            font-weight: bold;
+            border-radius: 20px;
+            letter-spacing: 1px;
+            box-shadow: 0 0 10px rgba(229, 9, 20, 0.5);
+        }
+
+        /* Contenedor Principal */
+        .main-container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        /* Reproductor de Video Estilo Broadcast */
+        .broadcast-container {
+            position: relative;
+            background: #000;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            border: 1px solid var(--card-border);
+        }
+
+        video {
+            width: 100%;
+            max-height: 600px;
+            display: block;
+            background: black;
+        }
+
+        /* Sección de Noticias Profesionales */
+        .news-section {
+            margin-top: 50px;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 25px;
+            border-bottom: 2px solid var(--card-border);
+            padding-bottom: 10px;
+            color: white;
+        }
+
+        .section-title::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 22px;
+            background-color: var(--tv-orange);
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .news-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--card-border);
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--tv-orange);
+            box-shadow: 0 8px 20px rgba(255, 102, 0, 0.15);
+        }
+
+        .news-card-content {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .news-tag {
+            font-size: 11px;
+            font-weight: bold;
+            color: var(--tv-orange);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .news-card h3 {
+            margin: 0 0 10px 0;
+            font-size: 18px;
+            color: white;
+            line-height: 1.4;
+        }
+
+        .news-card p {
+            margin: 0;
+            color: var(--text-muted);
+            font-size: 14px;
+            line-height: 1.5;
+            flex-grow: 1;
+        }
+
+        .news-footer-info {
+            padding: 12px 20px;
+            background-color: #111;
+            border-top: 1px solid var(--card-border);
+            font-size: 12px;
+            color: #777;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* Pie de página */
+        footer {
+            text-align: center;
+            padding: 30px;
+            background-color: #050505;
+            color: #666;
+            margin-top: 60px;
+            border-top: 1px solid #1a1a1a;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Ticker de Último Minuto (Estilo Noticiero TV) -->
+    <div class="breaking-news">
+        <div class="breaking-badge">ÚLTIMO MINUTO</div>
+        <div class="breaking-ticker">
+            🔴 Transmisión continua 24/7 en alta definición a través de la señal oficial de Miramax TV • Sigue nuestra cobertura especial con las noticias más destacadas del ámbito nacional e internacional • Mantente conectado a nuestra programación exclusiva.
+        </div>
+    </div>
+
+    <!-- Cabecera Institucional con Logo -->
+    <header>
+        <div class="logo-container">
+            <!-- AQUÍ APUNTA A TU LOGO -->
+            <img src="LOGO.jpg" alt="Miramax TV Logo">
+            <div class="channel-name">MIRAMAX <span>TV</span></div>
+        </div>
+        <div class="live-tag-header">● EN VIVO</div>
+    </header>
+
+    <div class="main-container">
+        
+        <!-- Reproductor Principal de TV con tu nueva señal -->
+        <div class="broadcast-container">
+            <video id="video" controls autoplay muted playsinline></video>
+        </div>
+
+        <!-- Sección de Actualidad y Noticias -->
+        <div class="news-section">
+            <div class="section-title">Actualidad y Cobertura Global</div>
+            
+            <div class="news-grid">
+                <!-- Noticia 1 -->
+                <a href="https://news.google.com" target="_blank" class="news-card">
+                    <div class="news-card-content">
+                        <span class="news-tag">Nacionales</span>
+                        <h3>Avances y reportes especiales de la jornada nacional</h3>
+                        <p>Análisis profundo de los acontecimientos políticos, económicos y sociales más relevantes del país en tiempo real.</p>
+                    </div>
+                    <div class="news-footer-info">
+                        <span>Redacción Miramax</span>
+                        <span>Actualizado hoy</span>
+                    </div>
+                </a>
+
+                <!-- Noticia 2 -->
+                <a href="https://news.google.com" target="_blank" class="news-card">
+                    <div class="news-card-content">
+                        <span class="news-tag">Regionales</span>
+                        <h3>Crónica y actualidad de las principales provincias</h3>
+                        <p>Seguimiento detallado a la agenda local, desarrollo comunitario y eventos de interés general de la región.</p>
+                    </div>
+                    <div class="news-footer-info">
+                        <span>Sección Regional</span>
+                        <span>En vivo</span>
+                    </div>
+                </a>
+
+                <!-- Noticia 3 -->
+                <a href="https://news.google.com" target="_blank" class="news-card">
+                    <div class="news-card-content">
+                        <span class="news-tag">Internacionales</span>
+                        <h3>Panorama global, tecnología y tendencias</h3>
+                        <p>Un recorrido por los acontecimientos que marcan la pauta internacional, geopolítica, ciencia y cultura global.</p>
+                    </div>
+                    <div class="news-footer-info">
+                        <span>Servicios Cable</span>
+                        <span>Global</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        &copy; 2026 MIRAMAX TV. Todos los derechos reservados. Transmisión Oficial en Directo.
+    </footer>
+
+    <!-- Script de reproducción HLS con tu nueva URL -->
+    <script>
+        var videoSrc = "https://vs20.live.opencaster.com/henry_771aca96/index.m3u8";
+        var video = document.getElementById('video');
+
+        if (video.canPlayType('application/vnd.apple.mpegurl')) {
+            video.src = videoSrc;
+        } else if (Hls.isSupported()) {
+            var hls = new Hls();
+            hls.loadSource(videoSrc);
+            hls.attachMedia(video);
+        }
+    </script>
+
+</body>
+</html>
