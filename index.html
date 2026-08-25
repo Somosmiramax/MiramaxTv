@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MIRAMAX TV - Señal en Vivo y Noticias</title>
+    <title>MIRAMAX TV - Señal en Vivo y Programación</title>
     <!-- Librería HLS para reproducir la señal de TV -->
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <style>
@@ -131,8 +131,8 @@
             background: black;
         }
 
-        /* Sección de Noticias Profesionales */
-        .news-section {
+        /* Secciones Generales */
+        .section-box {
             margin-top: 50px;
         }
 
@@ -156,6 +156,72 @@
             background-color: var(--tv-orange);
         }
 
+        /* Galería de Programas en Vivo */
+        .shows-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .show-card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid var(--card-border);
+            transition: all 0.3s ease;
+        }
+
+        .show-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--tv-orange);
+            box-shadow: 0 8px 20px rgba(255, 102, 0, 0.2);
+        }
+
+        .show-img-container {
+            width: 100%;
+            height: 180px;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        .show-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .show-card:hover .show-img-container img {
+            transform: scale(1.05);
+        }
+
+        .show-info {
+            padding: 20px;
+        }
+
+        .show-time {
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--tv-orange);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+        }
+
+        .show-info h3 {
+            margin: 0 0 8px 0;
+            font-size: 18px;
+            color: white;
+        }
+
+        .show-info p {
+            margin: 0;
+            color: var(--text-muted);
+            font-size: 13px;
+            line-height: 1.4;
+        }
+
+        /* Sección de Noticias Profesionales */
         .news-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -235,18 +301,17 @@
 </head>
 <body>
 
-    <!-- Ticker de Último Minuto (Estilo Noticiero TV) -->
+    <!-- Ticker de Último Minuto -->
     <div class="breaking-news">
         <div class="breaking-badge">ÚLTIMO MINUTO</div>
         <div class="breaking-ticker">
-            🔴 Transmisión continua 24/7 en alta definición a través de la señal oficial de Miramax TV • Sigue nuestra cobertura especial con las noticias más destacadas del ámbito nacional e internacional • Mantente conectado a nuestra programación exclusiva.
+            🔴 Transmisión continua 24/7 en alta definición a través de la señal oficial de Miramax TV • Sigue nuestra programación exclusiva y cobertura especial con las noticias más destacadas.
         </div>
     </div>
 
     <!-- Cabecera Institucional con Logo -->
     <header>
         <div class="logo-container">
-            <!-- AQUÍ APUNTA A TU LOGO -->
             <img src="LOGO.jpg" alt="Miramax TV Logo">
             <div class="channel-name">MIRAMAX <span>TV</span></div>
         </div>
@@ -255,13 +320,54 @@
 
     <div class="main-container">
         
-        <!-- Reproductor Principal de TV con tu nueva señal -->
+        <!-- Reproductor Principal de TV -->
         <div class="broadcast-container">
             <video id="video" controls autoplay muted playsinline></video>
         </div>
 
-        <!-- Sección de Actualidad y Noticias -->
-        <div class="news-section">
+        <!-- SECCIÓN: NUESTRA PROGRAMACIÓN EN VIVO -->
+        <div class="section-box">
+            <div class="section-title">Nuestra Programación en Vivo</div>
+            
+            <div class="shows-grid">
+                <!-- Programa 1 -->
+                <div class="show-card">
+                    <div class="show-img-container">
+                        <img src="programa1.jpg" alt="Programa 1">
+                    </div>
+                    <div class="show-info">
+                        <div class="show-time">Lunes a Viernes • 8:00 AM</div>
+                        <h3>Edición Matinal</h3>
+                        <p>Las noticias más importantes para empezar bien el día con entrevistas y enlaces en directo.</p>
+                    </div>
+                </div>
+
+                <!-- Programa 2 -->
+                <div class="show-card">
+                    <div class="show-img-container">
+                        <img src="programa2.jpg" alt="Programa 2">
+                    </div>
+                    <div class="show-time">Lunes a Viernes • 3:00 PM</div>
+                        <h3>Actualidad Regional</h3>
+                        <p>Análisis y debate sobre los sucesos que marcan la pauta en nuestra comunidad.</p>
+                    </div>
+                </div>
+
+                <!-- Programa 3 -->
+                <div class="show-card">
+                    <div class="show-img-container">
+                        <img src="programa3.jpg" alt="Programa 3">
+                    </div>
+                    <div class="show-time">Sábados • 7:00 PM</div>
+                        <h3>Edición Especial Central</h3>
+                        <p>Un resumen detallado con los reportajes de investigación y los acontecimientos de la semana.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN: ACTUALIDAD Y NOTICIAS -->
+        <div class="section-box">
             <div class="section-title">Actualidad y Cobertura Global</div>
             
             <div class="news-grid">
@@ -312,7 +418,7 @@
         &copy; 2026 MIRAMAX TV. Todos los derechos reservados. Transmisión Oficial en Directo.
     </footer>
 
-    <!-- Script de reproducción HLS con tu nueva URL -->
+    <!-- Script de reproducción HLS -->
     <script>
         var videoSrc = "https://vs20.live.opencaster.com/henry_771aca96/index.m3u8";
         var video = document.getElementById('video');
