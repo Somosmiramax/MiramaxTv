@@ -390,10 +390,10 @@
         </div>
     </div>
 
-    <!-- Cabecera Institucional con Logo, Reloj y Contador de Visitas -->
+    <!-- Cabecera Institucional con Logo en minúsculas (logo.jpg), Reloj y Contador de Visitas -->
     <header>
         <div class="logo-container">
-            <img src="LOGO.jpg" alt="Miramax TV Logo">
+            <img src="logo.jpg" alt="Miramax TV Logo">
             <div class="channel-name">MIRAMAX <span>TV</span></div>
         </div>
 
@@ -406,7 +406,7 @@
 
             <!-- Contador de Visitas -->
             <div class="visitor-counter">
-                👁️ Visitas: <span id="visit-count">1,248</span>
+                👁️ Visitas: <span id="visit-count">1,420</span>
             </div>
 
             <div class="live-tag-header">● EN VIVO</div>
@@ -538,9 +538,7 @@
         // 2. Reloj y Fecha en Tiempo Real
         function actualizarReloj() {
             const ahora = new Date();
-            // Hora formato digital
             document.getElementById('live-clock').innerText = ahora.toLocaleTimeString();
-            // Fecha bonita en español
             const opciones = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
             document.getElementById('live-date').innerText = ahora.toLocaleDateString('es-ES', opciones);
         }
@@ -551,7 +549,7 @@
         function gestionarVisitas() {
             let visitas = localStorage.getItem('miramax_visitas');
             if (!visitas) {
-                visitas = 1420; // Número inicial base de visitas
+                visitas = 1420;
             } else {
                 visitas = parseInt(visitas) + 1;
             }
