@@ -20,7 +20,6 @@
         body {
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             margin: 0;
-            /* Fondo elegante mezclando negro profundo con un toque de naranja cálido y blanco sutil */
             background: linear-gradient(135deg, #0f0f0f 0%, #1a0b00 50%, #050505 100%);
             color: var(--text-main);
             min-height: 100vh;
@@ -72,6 +71,8 @@
             align-items: center;
             justify-content: space-between;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            flex-wrap: wrap;
+            gap: 15px;
         }
 
         .logo-container {
@@ -100,6 +101,51 @@
             color: var(--tv-orange);
         }
 
+        /* Widget de Fecha, Hora y Contador en la Cabecera */
+        .header-widgets {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .live-clock-box {
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid var(--card-border);
+            padding: 6px 15px;
+            border-radius: 8px;
+            text-align: right;
+        }
+
+        #live-clock {
+            font-size: 14px;
+            font-weight: bold;
+            color: white;
+        }
+
+        #live-date {
+            font-size: 11px;
+            color: var(--tv-orange);
+            text-transform: uppercase;
+        }
+
+        .visitor-counter {
+            background: rgba(255, 102, 0, 0.1);
+            border: 1px solid var(--tv-orange);
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: bold;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .visitor-counter span {
+            color: var(--tv-orange);
+            font-size: 14px;
+        }
+
         .live-tag-header {
             background-color: #e50914;
             color: white;
@@ -111,7 +157,7 @@
             box-shadow: 0 0 15px rgba(229, 9, 20, 0.6);
         }
 
-        /* SECCIÓN HERO CON LA FOTO DE TRUJILLO DE FONDO */
+        /* Hero con la foto de Trujillo */
         .trujillo-hero {
             position: relative;
             background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.85)), url('trujillo.jpg');
@@ -344,13 +390,27 @@
         </div>
     </div>
 
-    <!-- Cabecera Institucional con Logo -->
+    <!-- Cabecera Institucional con Logo, Reloj y Contador de Visitas -->
     <header>
         <div class="logo-container">
             <img src="LOGO.jpg" alt="Miramax TV Logo">
             <div class="channel-name">MIRAMAX <span>TV</span></div>
         </div>
-        <div class="live-tag-header">● EN VIVO</div>
+
+        <div class="header-widgets">
+            <!-- Reloj y Fecha en Vivo -->
+            <div class="live-clock-box">
+                <div id="live-clock">00:00:00</div>
+                <div id="live-date">Cargando fecha...</div>
+            </div>
+
+            <!-- Contador de Visitas -->
+            <div class="visitor-counter">
+                👁️ Visitas: <span id="visit-count">1,248</span>
+            </div>
+
+            <div class="live-tag-header">● EN VIVO</div>
+        </div>
     </header>
 
     <!-- Banner con la Ciudad de Trujillo de Fondo -->
@@ -461,8 +521,9 @@
         &copy; 2026 MIRAMAX TV. Todos los derechos reservados. Transmisión Oficial en Directo desde Trujillo, Perú.
     </footer>
 
-    <!-- Script de reproducción HLS -->
+    <!-- Scripts de Video HLS, Reloj y Contador -->
     <script>
+        // 1. Reproductor de TV en vivo
         var videoSrc = "https://vs20.live.opencaster.com/henry_771aca96/index.m3u8";
         var video = document.getElementById('video');
 
@@ -473,6 +534,31 @@
             hls.loadSource(videoSrc);
             hls.attachMedia(video);
         }
+
+        // 2. Reloj y Fecha en Tiempo Real
+        function actualizarReloj() {
+            const ahora = new Date();
+            // Hora formato digital
+            document.getElementById('live-clock').innerText = ahora.toLocaleTimeString();
+            // Fecha bonita en español
+            const opciones = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
+            document.getElementById('live-date').innerText = ahora.toLocaleDateString('es-ES', opciones);
+        }
+        setInterval(actualizarReloj, 1000);
+        actualizarReloj();
+
+        // 3. Contador de Visitas Automático por navegador
+        function gestionarVisitas() {
+            let visitas = localStorage.getItem('miramax_visitas');
+            if (!visitas) {
+                visitas = 1420; // Número inicial base de visitas
+            } else {
+                visitas = parseInt(visitas) + 1;
+            }
+            localStorage.setItem('miramax_visitas', visitas);
+            document.getElementById('visit-count').innerText = visitas.toLocaleString();
+        }
+        gestionarVisitas();
     </script>
 
 </body>
