@@ -11,9 +11,9 @@
         :root {
             --tv-orange: #ff6600;
             --tv-orange-dark: #cc5200;
-            --dark-bg: #090909;
+            --dark-bg: #070707;
             --card-bg: rgba(18, 18, 18, 0.92);
-            --card-border: rgba(255, 102, 0, 0.4);
+            --card-border: rgba(255, 102, 0, 0.5);
             --text-main: #ffffff;
             --text-muted: #cccccc;
         }
@@ -27,7 +27,7 @@
             overflow-x: hidden;
         }
 
-        /* Video de Fondo Animado Naranja, Negro y Blanco */
+        /* Fondo Animado con Destellos e Intensidad en Color Naranja */
         .bg-video-container {
             position: fixed;
             top: 0;
@@ -43,7 +43,8 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            opacity: 0.3;
+            opacity: 0.45; /* Mayor presencia del tono animado */
+            filter: saturate(180%) hue-rotate(-10deg); /* Realza los tonos naranjas y cálidos */
         }
 
         .bg-overlay {
@@ -53,7 +54,7 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            background: linear-gradient(135deg, rgba(10,10,10,0.92) 0%, rgba(20,8,0,0.88) 50%, rgba(5,5,5,0.96) 100%);
+            background: linear-gradient(135deg, rgba(15,5,0,0.85) 0%, rgba(30,10,0,0.8) 50%, rgba(5,5,5,0.92) 100%);
         }
 
         /* Ticker de Último Minuto */
@@ -95,13 +96,13 @@
 
         /* Cabecera del Canal Adaptable */
         header {
-            background: rgba(15, 15, 15, 0.9);
+            background: rgba(15, 15, 15, 0.88);
             backdrop-filter: blur(12px);
             padding: 15px 30px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 102, 0, 0.2);
             flex-wrap: wrap;
             gap: 15px;
         }
@@ -118,7 +119,7 @@
             border-radius: 50%;
             border: 2px solid var(--tv-orange);
             object-fit: cover;
-            box-shadow: 0 0 15px rgba(255, 102, 0, 0.5);
+            box-shadow: 0 0 20px rgba(255, 102, 0, 0.6);
         }
 
         .channel-name {
@@ -140,8 +141,8 @@
         }
 
         .social-btn {
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 102, 0, 0.1);
+            border: 1px solid rgba(255, 102, 0, 0.3);
             color: white;
             padding: 8px 12px;
             border-radius: 6px;
@@ -154,6 +155,7 @@
         .social-btn:hover {
             background: var(--tv-orange);
             border-color: var(--tv-orange);
+            box-shadow: 0 0 10px rgba(255, 102, 0, 0.5);
         }
 
         /* Widgets de Reloj y Visitas */
@@ -185,7 +187,7 @@
         }
 
         .visitor-counter {
-            background: rgba(255, 102, 0, 0.15);
+            background: rgba(255, 102, 0, 0.2);
             border: 1px solid var(--tv-orange);
             padding: 8px 10px;
             border-radius: 8px;
@@ -212,7 +214,7 @@
         /* Hero con la foto de Trujillo */
         .trujillo-hero {
             position: relative;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url('trujillo.jpg');
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.75)), url('trujillo.jpg');
             background-size: cover;
             background-position: center;
             padding: 35px 20px;
@@ -248,9 +250,9 @@
 
         /* Espacio para Publicidad / Monetización */
         .ad-banner {
-            background: rgba(20, 20, 20, 0.8);
+            background: rgba(20, 10, 0, 0.75);
             border: 2px dashed var(--tv-orange);
-            color: #aaa;
+            color: #ddd;
             padding: 15px;
             text-align: center;
             border-radius: 10px;
@@ -266,7 +268,7 @@
             background: #000;
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.95);
+            box-shadow: 0 20px 50px rgba(255, 102, 0, 0.2);
             border: 2px solid var(--tv-orange);
         }
 
@@ -289,7 +291,7 @@
             font-size: 20px;
             font-weight: bold;
             margin-bottom: 25px;
-            border-bottom: 2px solid rgba(255,255,255,0.15);
+            border-bottom: 2px solid rgba(255, 102, 0, 0.3);
             padding-bottom: 10px;
             color: white;
         }
@@ -321,7 +323,7 @@
         .show-card:hover {
             transform: translateY(-5px);
             border-color: var(--tv-orange);
-            box-shadow: 0 12px 30px rgba(255, 102, 0, 0.3);
+            box-shadow: 0 12px 30px rgba(255, 102, 0, 0.4);
         }
 
         .show-img-container {
@@ -391,7 +393,7 @@
         .news-card:hover {
             transform: translateY(-5px);
             border-color: var(--tv-orange);
-            box-shadow: 0 12px 30px rgba(255, 102, 0, 0.3);
+            box-shadow: 0 12px 30px rgba(255, 102, 0, 0.4);
         }
 
         .news-card-content {
@@ -427,10 +429,10 @@
 
         .news-footer-info {
             padding: 12px 20px;
-            background-color: rgba(0, 0, 0, 0.5);
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            background-color: rgba(20, 10, 0, 0.6);
+            border-top: 1px solid rgba(255, 102, 0, 0.2);
             font-size: 12px;
-            color: #888;
+            color: #aaa;
             display: flex;
             justify-content: space-between;
         }
@@ -439,10 +441,10 @@
         footer {
             text-align: center;
             padding: 30px;
-            background-color: rgba(5, 5, 5, 0.95);
-            color: #777;
+            background-color: rgba(10, 5, 0, 0.95);
+            color: #888;
             margin-top: 60px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(255, 102, 0, 0.3);
             font-size: 13px;
         }
 
@@ -464,7 +466,7 @@
 </head>
 <body>
 
-    <!-- Video de Fondo Animado Naranja, Negro y Blanco -->
+    <!-- Video de Fondo Animado con Intensidad Naranja -->
     <div class="bg-video-container">
         <video autoplay muted loop playsinline>
             <source src="https://assets.mixkit.co/videos/preview/mixkit-digital-animation-of-screens-and-lights-31952-large.mp4" type="video/mp4">
