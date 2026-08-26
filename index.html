@@ -245,19 +245,27 @@
             padding: 0 20px;
         }
 
-        /* Espacio para Publicidad / Monetización */
-        .ad-banner {
-            background: rgba(25, 10, 0, 0.85);
-            border: 2px dashed var(--tv-orange);
-            color: #ddd;
-            padding: 15px;
-            text-align: center;
+        /* Estilo para los Banners de Publicidad con Imagen */
+        .ad-banner-img {
+            background: rgba(18, 18, 18, 0.9);
+            border: 2px solid var(--tv-orange);
             border-radius: 10px;
             margin: 30px 0;
-            font-size: 13px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            box-shadow: 0 5px 15px rgba(255, 102, 0, 0.15);
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(255, 102, 0, 0.25);
+            transition: transform 0.3s ease;
+        }
+
+        .ad-banner-img:hover {
+            transform: scale(1.01);
+            box-shadow: 0 12px 35px rgba(255, 102, 0, 0.4);
+        }
+
+        .ad-banner-img img {
+            width: 100%;
+            max-height: 140px;
+            object-fit: cover;
+            display: block;
         }
 
         /* Reproductor de Video Estilo Broadcast */
@@ -512,9 +520,11 @@
 
     <div class="main-container">
         
-        <!-- ESPACIO PUBLICITARIO 1 (Monetización) -->
-        <div class="ad-banner">
-            📢 Espacio Publicitario / Patrocinadores Oficiales (Monetización)
+        <!-- ESPACIO PUBLICITARIO 1 (Con anuncio1.jpg) -->
+        <div class="ad-banner-img">
+            <a href="#" target="_blank">
+                <img src="anuncio1.jpg" alt="Publicidad Miramax TV 1">
+            </a>
         </div>
 
         <!-- Reproductor Principal de TV en vivo (vMix / HLS) -->
@@ -565,9 +575,11 @@
             </div>
         </div>
 
-        <!-- ESPACIO PUBLICITARIO 2 (Monetización) -->
-        <div class="ad-banner">
-            ⭐ Anuncia aquí tu marca o negocio en Miramax TV
+        <!-- ESPACIO PUBLICITARIO 2 (Con anuncio2.jpg) -->
+        <div class="ad-banner-img">
+            <a href="#" target="_blank">
+                <img src="anuncio2.jpg" alt="Publicidad Miramax TV 2">
+            </a>
         </div>
 
         <!-- SECCIÓN: NOTICIAS DESTACADAS Y PORTADA -->
