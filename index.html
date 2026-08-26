@@ -238,33 +238,47 @@
             letter-spacing: 1px;
         }
 
-        /* Contenedor Principal */
+        /* Contenedor Principal con diseño de 2 columnas (Contenido + Barra Lateral de Anuncios) */
         .main-container {
             max-width: 1200px;
             margin: 0 auto 40px auto;
             padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 340px;
+            gap: 30px;
         }
 
-        /* Estilo para los Banners de Publicidad con Imagen */
-        .ad-banner-img {
+        .content-area {
+            min-width: 0;
+        }
+
+        /* Barra Lateral de Publicidad Vertical Adaptada */
+        .sidebar-ads {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .ad-banner-vertical {
             background: rgba(18, 18, 18, 0.9);
             border: 2px solid var(--tv-orange);
-            border-radius: 10px;
-            margin: 30px 0;
+            border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 8px 25px rgba(255, 102, 0, 0.25);
             transition: transform 0.3s ease;
         }
 
-        .ad-banner-img:hover {
-            transform: scale(1.01);
+        .ad-banner-vertical:hover {
+            transform: translateY(-5px);
             box-shadow: 0 12px 35px rgba(255, 102, 0, 0.4);
         }
 
-        .ad-banner-img img {
+        .ad-banner-vertical img {
             width: 100%;
-            max-height: 140px;
-            object-fit: cover;
+            height: auto;
+            max-height: 520px;
+            object-fit: contain;
+            background: #000;
             display: block;
         }
 
@@ -276,18 +290,19 @@
             overflow: hidden;
             box-shadow: 0 20px 50px rgba(255, 102, 0, 0.3);
             border: 2px solid var(--tv-orange);
+            margin-bottom: 30px;
         }
 
         video#video {
             width: 100%;
-            max-height: 600px;
+            max-height: 550px;
             display: block;
             background: black;
         }
 
         /* Secciones Generales */
         .section-box {
-            margin-top: 50px;
+            margin-top: 40px;
         }
 
         .section-title {
@@ -296,7 +311,7 @@
             gap: 10px;
             font-size: 20px;
             font-weight: bold;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             border-bottom: 2px solid rgba(255, 102, 0, 0.4);
             padding-bottom: 10px;
             color: white;
@@ -313,8 +328,8 @@
         /* Galería de Programas en Vivo */
         .shows-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
         }
 
         .show-card {
@@ -334,7 +349,7 @@
 
         .show-img-container {
             width: 100%;
-            height: 180px;
+            height: 160px;
             overflow: hidden;
             background-color: #000;
         }
@@ -351,36 +366,36 @@
         }
 
         .show-info {
-            padding: 20px;
+            padding: 15px;
         }
 
         .show-time {
-            font-size: 12px;
+            font-size: 11px;
             font-weight: bold;
             color: var(--tv-orange-bright);
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-bottom: 6px;
+            margin-bottom: 5px;
         }
 
         .show-info h3 {
-            margin: 0 0 8px 0;
-            font-size: 18px;
+            margin: 0 0 6px 0;
+            font-size: 16px;
             color: white;
         }
 
         .show-info p {
             margin: 0;
             color: var(--text-muted);
-            font-size: 13px;
+            font-size: 12px;
             line-height: 1.4;
         }
 
         /* Sección de Noticias Destacadas */
         .news-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
         }
 
         .news-card {
@@ -403,7 +418,7 @@
         }
 
         .news-card-content {
-            padding: 20px;
+            padding: 18px;
             display: flex;
             flex-direction: column;
             flex-grow: 1;
@@ -415,12 +430,12 @@
             color: var(--tv-orange-bright);
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
         .news-card h3 {
-            margin: 0 0 10px 0;
-            font-size: 18px;
+            margin: 0 0 8px 0;
+            font-size: 16px;
             color: white;
             line-height: 1.4;
         }
@@ -428,16 +443,16 @@
         .news-card p {
             margin: 0;
             color: var(--text-muted);
-            font-size: 14px;
+            font-size: 13px;
             line-height: 1.5;
             flex-grow: 1;
         }
 
         .news-footer-info {
-            padding: 12px 20px;
+            padding: 10px 18px;
             background-color: rgba(20, 10, 0, 0.6);
             border-top: 1px solid rgba(255, 102, 0, 0.3);
-            font-size: 12px;
+            font-size: 11px;
             color: #aaa;
             display: flex;
             justify-content: space-between;
@@ -454,8 +469,11 @@
             font-size: 13px;
         }
 
-        /* Adaptabilidad móvil estricta */
-        @media (max-width: 768px) {
+        /* Adaptabilidad móvil estricta: se convierte en una sola columna ordenada */
+        @media (max-width: 900px) {
+            .main-container {
+                grid-template-columns: 1fr;
+            }
             header {
                 flex-direction: column;
                 align-items: center;
@@ -518,112 +536,123 @@
         <p>Cobertura Informativa y Entretenimiento Sin Límites</p>
     </div>
 
+    <!-- Contenedor Principal (Organizado en Contenido Central + Barra Lateral de Anuncios Verticales) -->
     <div class="main-container">
         
-        <!-- ESPACIO PUBLICITARIO 1 (Con anuncio1.jpg) -->
-        <div class="ad-banner-img">
-            <a href="#" target="_blank">
-                <img src="anuncio1.jpg" alt="Publicidad Miramax TV 1">
-            </a>
-        </div>
-
-        <!-- Reproductor Principal de TV en vivo (vMix / HLS) -->
-        <div class="broadcast-container">
-            <video id="video" controls autoplay muted playsinline></video>
-        </div>
-
-        <!-- SECCIÓN: NUESTRA PROGRAMACIÓN EN VIVO -->
-        <div class="section-box">
-            <div class="section-title">Nuestra Programación en Vivo</div>
+        <!-- COLUMNA PRINCIPAL (Reproductor, Programas y Noticias) -->
+        <div class="content-area">
             
-            <div class="shows-grid">
-                <!-- Programa 1 -->
-                <div class="show-card">
-                    <div class="show-img-container">
-                        <img src="programa1.png" alt="Programa 1">
-                    </div>
-                    <div class="show-info">
-                        <div class="show-time">Lunes a Viernes • 8:00 AM</div>
-                        <h3>Edición Matinal</h3>
-                        <p>Las noticias más importantes para empezar bien el día con entrevistas y enlaces en directo.</p>
-                    </div>
-                </div>
+            <!-- Reproductor Principal de TV en vivo (vMix / HLS) -->
+            <div class="broadcast-container">
+                <video id="video" controls autoplay muted playsinline></video>
+            </div>
 
-                <!-- Programa 2 -->
-                <div class="show-card">
-                    <div class="show-img-container">
-                        <img src="programa2.png" alt="Programa 2">
+            <!-- SECCIÓN: NUESTRA PROGRAMACIÓN EN VIVO -->
+            <div class="section-box">
+                <div class="section-title">Nuestra Programación en Vivo</div>
+                
+                <div class="shows-grid">
+                    <!-- Programa 1 -->
+                    <div class="show-card">
+                        <div class="show-img-container">
+                            <img src="programa1.png" alt="Programa 1">
+                        </div>
+                        <div class="show-info">
+                            <div class="show-time">Lunes a Viernes • 8:00 AM</div>
+                            <h3>Edición Matinal</h3>
+                            <p>Las noticias más importantes para empezar bien el día con entrevistas y enlaces en directo.</p>
+                        </div>
                     </div>
-                    <div class="show-info">
-                        <div class="show-time">Lunes a Viernes • 3:00 PM</div>
-                        <h3>Actualidad Regional</h3>
-                        <p>Análisis y debate sobre los sucesos que marcan la pauta en nuestra comunidad.</p>
-                    </div>
-                </div>
 
-                <!-- Programa 3 -->
-                <div class="show-card">
-                    <div class="show-img-container">
-                        <img src="programa3.png" alt="Programa 3">
+                    <!-- Programa 2 -->
+                    <div class="show-card">
+                        <div class="show-img-container">
+                            <img src="programa2.png" alt="Programa 2">
+                        </div>
+                        <div class="show-info">
+                            <div class="show-time">Lunes a Viernes • 3:00 PM</div>
+                            <h3>Actualidad Regional</h3>
+                            <p>Análisis y debate sobre los sucesos que marcan la pauta en nuestra comunidad.</p>
+                        </div>
                     </div>
-                    <div class="show-info">
-                        <div class="show-time">Sábados • 7:00 PM</div>
-                        <h3>Edición Especial Central</h3>
-                        <p>Un resumen detallado con los reportajes de investigación y los acontecimientos de la semana.</p>
+
+                    <!-- Programa 3 -->
+                    <div class="show-card">
+                        <div class="show-img-container">
+                            <img src="programa3.png" alt="Programa 3">
+                        </div>
+                        <div class="show-info">
+                            <div class="show-time">Sábados • 7:00 PM</div>
+                            <h3>Edición Especial Central</h3>
+                            <p>Un resumen detallado con los reportajes de investigación y los acontecimientos de la semana.</p>
+                        </div>
                     </div>
                 </div>
             </div>
+
+            <!-- SECCIÓN: NOTICIAS DESTACADAS Y PORTADA -->
+            <div class="section-box">
+                <div class="section-title">Portada y Noticias Destacadas</div>
+                
+                <div class="news-grid">
+                    <!-- Noticia 1 -->
+                    <a href="https://news.google.com" target="_blank" class="news-card">
+                        <div class="news-card-content">
+                            <span class="news-tag">Nacionales</span>
+                            <h3>Avances y reportes especiales de la jornada nacional</h3>
+                            <p>Análisis profundo de los acontecimientos políticos, económicos y sociales más relevantes del país en tiempo real.</p>
+                        </div>
+                        <div class="news-footer-info">
+                            <span>Redacción Miramax</span>
+                            <span>Actualizado hoy</span>
+                        </div>
+                    </a>
+
+                    <!-- Noticia 2 -->
+                    <a href="https://news.google.com" target="_blank" class="news-card">
+                        <div class="news-card-content">
+                            <span class="news-tag">Regionales</span>
+                            <h3>Crónica y actualidad de las principales provincias</h3>
+                            <p>Seguimiento detallado a la agenda local, desarrollo comunitario y eventos de interés general de la región.</p>
+                        </div>
+                        <div class="news-footer-info">
+                            <span>Sección Regional</span>
+                            <span>En vivo</span>
+                        </div>
+                    </a>
+
+                    <!-- Noticia 3 -->
+                    <a href="https://news.google.com" target="_blank" class="news-card">
+                        <div class="news-card-content">
+                            <span class="news-tag">Internacionales</span>
+                            <h3>Panorama global, tecnología y tendencias</h3>
+                            <p>Un recorrido por los acontecimientos que marcan la pauta internacional, geopolítica, ciencia y cultura global.</p>
+                        </div>
+                        <div class="news-footer-info">
+                            <span>Servicios Cable</span>
+                            <span>Global</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
         </div>
 
-        <!-- ESPACIO PUBLICITARIO 2 (Con anuncio2.jpg) -->
-        <div class="ad-banner-img">
-            <a href="#" target="_blank">
-                <img src="anuncio2.jpg" alt="Publicidad Miramax TV 2">
-            </a>
-        </div>
-
-        <!-- SECCIÓN: NOTICIAS DESTACADAS Y PORTADA -->
-        <div class="section-box">
-            <div class="section-title">Portada y Noticias Destacadas</div>
+        <!-- BARRA LATERAL DERECHA (Tus Anuncios Verticales de Publicidad) -->
+        <div class="sidebar-ads">
+            <div class="section-title" style="margin-bottom: 15px; font-size: 17px;">Patrocinadores</div>
             
-            <div class="news-grid">
-                <!-- Noticia 1 -->
-                <a href="https://news.google.com" target="_blank" class="news-card">
-                    <div class="news-card-content">
-                        <span class="news-tag">Nacionales</span>
-                        <h3>Avances y reportes especiales de la jornada nacional</h3>
-                        <p>Análisis profundo de los acontecimientos políticos, económicos y sociales más relevantes del país en tiempo real.</p>
-                    </div>
-                    <div class="news-footer-info">
-                        <span>Redacción Miramax</span>
-                        <span>Actualizado hoy</span>
-                    </div>
+            <!-- Anuncio Vertical 1: Cachicadán -->
+            <div class="ad-banner-vertical">
+                <a href="#" target="_blank">
+                    <img src="anuncio1.jpg" alt="Publicidad Cachicadán">
                 </a>
+            </div>
 
-                <!-- Noticia 2 -->
-                <a href="https://news.google.com" target="_blank" class="news-card">
-                    <div class="news-card-content">
-                        <span class="news-tag">Regionales</span>
-                        <h3>Crónica y actualidad de las principales provincias</h3>
-                        <p>Seguimiento detallado a la agenda local, desarrollo comunitario y eventos de interés general de la región.</p>
-                    </div>
-                    <div class="news-footer-info">
-                        <span>Sección Regional</span>
-                        <span>En vivo</span>
-                    </div>
-                </a>
-
-                <!-- Noticia 3 -->
-                <a href="https://news.google.com" target="_blank" class="news-card">
-                    <div class="news-card-content">
-                        <span class="news-tag">Internacionales</span>
-                        <h3>Panorama global, tecnología y tendencias</h3>
-                        <p>Un recorrido por los acontecimientos que marcan la pauta internacional, geopolítica, ciencia y cultura global.</p>
-                    </div>
-                    <div class="news-footer-info">
-                        <span>Servicios Cable</span>
-                        <span>Global</span>
-                    </div>
+            <!-- Anuncio Vertical 2: Fibra Óptica -->
+            <div class="ad-banner-vertical">
+                <a href="#" target="_blank">
+                    <img src="anuncio2.jpg" alt="Publicidad Internet y Televisión">
                 </a>
             </div>
         </div>
