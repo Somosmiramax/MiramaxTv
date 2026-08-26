@@ -11,15 +11,15 @@
         :root {
             --tv-orange: #ff6600;
             --tv-orange-bright: #ff8533;
-            --dark-bg: #050505;
-            --card-bg: rgba(18, 18, 18, 0.92);
-            --card-border: rgba(255, 102, 0, 0.5);
+            --dark-bg: #0c0c0c;
+            --card-bg: #161616;
+            --card-border: rgba(255, 102, 0, 0.3);
             --text-main: #ffffff;
-            --text-muted: #cccccc;
+            --text-muted: #b0b0b0;
         }
 
         body {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             margin: 0;
             background-color: var(--dark-bg);
             color: var(--text-main);
@@ -27,7 +27,7 @@
             overflow-x: hidden;
         }
 
-        /* Fondo Animado Dinámico en Naranja Brillante, Negro y Blanco */
+        /* Fondo Animado Dinámico en Naranja Brillante y Negro */
         .animated-bg {
             position: fixed;
             top: 0;
@@ -35,9 +35,9 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            background: linear-gradient(-45deg, #050505, #1a0800, #ff6600, #222222);
+            background: linear-gradient(-45deg, #0a0500, #140700, #ff6600, #181818);
             background-size: 400% 400%;
-            animation: gradientBG 12s ease infinite;
+            animation: gradientBG 15s ease infinite;
         }
 
         @keyframes gradientBG {
@@ -50,13 +50,13 @@
             content: '';
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: radial-gradient(circle at 50% 30%, rgba(255, 133, 51, 0.25) 0%, rgba(255, 255, 255, 0.05) 40%, transparent 70%);
+            background: radial-gradient(circle at 50% 20%, rgba(255, 102, 0, 0.2) 0%, rgba(0, 0, 0, 0.6) 60%, rgba(5, 5, 5, 0.95) 100%);
             pointer-events: none;
         }
 
-        /* Ticker de Último Minuto */
+        /* Ticker de Último Minuto Estilo TV */
         .breaking-news {
-            background-color: rgba(0, 0, 0, 0.95);
+            background-color: #000000;
             color: white;
             padding: 10px 0;
             border-bottom: 2px solid var(--tv-orange);
@@ -74,7 +74,7 @@
             padding: 10px 20px;
             font-weight: bold;
             text-transform: uppercase;
-            font-size: 13px;
+            font-size: 12px;
             letter-spacing: 1px;
             margin-right: 15px;
             z-index: 2;
@@ -82,7 +82,7 @@
 
         .breaking-ticker {
             display: inline-block;
-            animation: marquee 25s linear infinite;
+            animation: marquee 30s linear infinite;
             color: #fff;
         }
 
@@ -91,17 +91,20 @@
             100% { transform: translateX(-100%); }
         }
 
-        /* Cabecera del Canal Adaptable */
+        /* Cabecera del Portal Estilo Medios */
         header {
-            background: rgba(15, 10, 5, 0.88);
-            backdrop-filter: blur(12px);
-            padding: 15px 30px;
+            background: rgba(12, 12, 12, 0.95);
+            backdrop-filter: blur(15px);
+            padding: 15px 40px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            border-bottom: 1px solid rgba(255, 102, 0, 0.3);
+            border-bottom: 1px solid rgba(255, 102, 0, 0.25);
             flex-wrap: wrap;
             gap: 15px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
         .logo-container {
@@ -111,16 +114,16 @@
         }
 
         .logo-container img {
-            height: 55px;
-            width: 55px;
+            height: 50px;
+            width: 50px;
             border-radius: 50%;
             border: 2px solid var(--tv-orange);
             object-fit: cover;
-            box-shadow: 0 0 20px rgba(255, 102, 0, 0.7);
+            box-shadow: 0 0 15px rgba(255, 102, 0, 0.5);
         }
 
         .channel-name {
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 900;
             letter-spacing: 1.5px;
             color: white;
@@ -133,18 +136,18 @@
         /* Redes Sociales Oficiales */
         .social-header {
             display: flex;
-            gap: 10px;
+            gap: 8px;
             flex-wrap: wrap;
         }
 
         .social-btn {
-            background: rgba(255, 102, 0, 0.15);
-            border: 1px solid rgba(255, 102, 0, 0.4);
+            background: rgba(255, 102, 0, 0.1);
+            border: 1px solid rgba(255, 102, 0, 0.3);
             color: white;
-            padding: 8px 12px;
-            border-radius: 6px;
+            padding: 7px 12px;
+            border-radius: 4px;
             text-decoration: none;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: bold;
             transition: all 0.3s ease;
         }
@@ -152,42 +155,42 @@
         .social-btn:hover {
             background: var(--tv-orange);
             border-color: var(--tv-orange);
-            box-shadow: 0 0 12px rgba(255, 102, 0, 0.8);
+            box-shadow: 0 0 10px rgba(255, 102, 0, 0.6);
         }
 
         /* Widgets de Reloj y Visitas */
         .header-widgets {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
             flex-wrap: wrap;
         }
 
         .live-clock-box {
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.8);
             border: 1px solid var(--card-border);
-            padding: 6px 12px;
-            border-radius: 8px;
+            padding: 5px 10px;
+            border-radius: 6px;
             text-align: right;
         }
 
         #live-clock {
-            font-size: 13px;
+            font-size: 12px;
             font-weight: bold;
             color: white;
         }
 
         #live-date {
-            font-size: 10px;
+            font-size: 9px;
             color: var(--tv-orange-bright);
             text-transform: uppercase;
         }
 
         .visitor-counter {
-            background: rgba(255, 102, 0, 0.25);
+            background: rgba(255, 102, 0, 0.2);
             border: 1px solid var(--tv-orange);
-            padding: 8px 10px;
-            border-radius: 8px;
+            padding: 7px 10px;
+            border-radius: 6px;
             font-size: 11px;
             font-weight: bold;
             color: white;
@@ -200,47 +203,47 @@
         .live-tag-header {
             background-color: #e50914;
             color: white;
-            padding: 6px 14px;
-            font-size: 12px;
+            padding: 5px 12px;
+            font-size: 11px;
             font-weight: bold;
             border-radius: 20px;
             letter-spacing: 1px;
-            box-shadow: 0 0 15px rgba(229, 9, 20, 0.8);
+            box-shadow: 0 0 12px rgba(229, 9, 20, 0.8);
         }
 
-        /* Hero con la foto de Trujillo */
+        /* Banner Hero con Ciudad de Trujillo */
         .trujillo-hero {
             position: relative;
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.75)), url('trujillo.jpg');
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.85)), url('trujillo.jpg');
             background-size: cover;
             background-position: center;
-            padding: 35px 20px;
+            padding: 30px 20px;
             text-align: center;
             border-bottom: 3px solid var(--tv-orange);
             margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.9);
         }
 
         .trujillo-hero h1 {
             margin: 0;
-            font-size: 26px;
+            font-size: 24px;
             color: white;
             text-transform: uppercase;
             letter-spacing: 2px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.9);
+            text-shadow: 0 2px 8px rgba(0,0,0,0.9);
         }
 
         .trujillo-hero p {
-            margin: 8px 0 0 0;
+            margin: 6px 0 0 0;
             color: var(--tv-orange-bright);
-            font-size: 14px;
+            font-size: 13px;
             font-weight: bold;
             letter-spacing: 1px;
         }
 
-        /* Contenedor Principal (2 columnas) */
+        /* Contenedor Principal Estilo Portal */
         .main-container {
-            max-width: 1200px;
+            max-width: 1250px;
             margin: 0 auto 40px auto;
             padding: 0 20px;
             display: grid;
@@ -252,114 +255,76 @@
             min-width: 0;
         }
 
-        /* Barra Lateral de Publicidad (Videos en Playlist e Imágenes) */
-        .sidebar-ads {
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-        }
-
-        .ad-banner-vertical, .ad-video-container {
-            background: rgba(18, 18, 18, 0.9);
-            border: 2px solid var(--tv-orange);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 8px 25px rgba(255, 102, 0, 0.25);
-            transition: transform 0.3s ease;
-        }
-
-        .ad-banner-vertical:hover, .ad-video-container:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 35px rgba(255, 102, 0, 0.4);
-        }
-
-        .ad-banner-vertical img {
-            width: 100%;
-            height: auto;
-            max-height: 520px;
-            object-fit: contain;
-            background: #000;
-            display: block;
-        }
-
-        /* Reproductor de Video Publicitario (Playlist) */
-        .ad-video-container video {
-            width: 100%;
-            height: auto;
-            max-height: 520px;
-            object-fit: cover;
-            display: block;
-            background: #000;
-        }
-
-        /* Reproductor de Video Estilo Broadcast */
+        /* Reproductor de TV Principal */
         .broadcast-container {
             position: relative;
             background: #000;
-            border-radius: 12px;
+            border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 20px 50px rgba(255, 102, 0, 0.3);
+            box-shadow: 0 15px 40px rgba(255, 102, 0, 0.25);
             border: 2px solid var(--tv-orange);
             margin-bottom: 30px;
         }
 
         video#video {
             width: 100%;
-            max-height: 550px;
+            max-height: 520px;
             display: block;
             background: black;
         }
 
-        /* Secciones Generales */
+        /* Secciones y Títulos de Categoría Estilo Cosmos */
         .section-box {
-            margin-top: 40px;
+            margin-top: 35px;
         }
 
         .section-title {
             display: flex;
             align-items: center;
-            gap: 10px;
-            font-size: 20px;
+            justify-content: space-between;
+            font-size: 18px;
             font-weight: bold;
             margin-bottom: 20px;
-            border-bottom: 2px solid rgba(255, 102, 0, 0.4);
-            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(255, 102, 0, 0.3);
+            padding-bottom: 8px;
             color: white;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .section-title::before {
+        .section-title span::after {
             content: '';
-            display: inline-block;
-            width: 6px;
-            height: 22px;
+            display: block;
+            width: 50px;
+            height: 3px;
             background-color: var(--tv-orange);
+            margin-top: 8px;
         }
 
-        /* Galería de Programas en Vivo */
+        /* Cuadrícula de Programas */
         .shows-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
             gap: 20px;
         }
 
         .show-card {
             background-color: var(--card-bg);
-            backdrop-filter: blur(8px);
-            border-radius: 10px;
+            border-radius: 8px;
             overflow: hidden;
             border: 1px solid var(--card-border);
             transition: all 0.3s ease;
         }
 
         .show-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-4px);
             border-color: var(--tv-orange);
-            box-shadow: 0 12px 30px rgba(255, 102, 0, 0.5);
+            box-shadow: 0 10px 25px rgba(255, 102, 0, 0.3);
         }
 
         .show-img-container {
             width: 100%;
-            height: 160px;
+            height: 150px;
             overflow: hidden;
             background-color: #000;
         }
@@ -390,7 +355,7 @@
 
         .show-info h3 {
             margin: 0 0 6px 0;
-            font-size: 16px;
+            font-size: 15px;
             color: white;
         }
 
@@ -401,16 +366,15 @@
             line-height: 1.4;
         }
 
-        /* Sección de Noticias Destacadas */
+        /* Cuadrícula de Noticias Estilo Portal */
         .news-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
         }
 
         .news-card {
             background-color: var(--card-bg);
-            backdrop-filter: blur(8px);
             border-radius: 8px;
             overflow: hidden;
             border: 1px solid var(--card-border);
@@ -422,9 +386,9 @@
         }
 
         .news-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-4px);
             border-color: var(--tv-orange);
-            box-shadow: 0 12px 30px rgba(255, 102, 0, 0.5);
+            box-shadow: 0 10px 25px rgba(255, 102, 0, 0.3);
         }
 
         .news-card-content {
@@ -435,7 +399,7 @@
         }
 
         .news-tag {
-            font-size: 11px;
+            font-size: 10px;
             font-weight: bold;
             color: var(--tv-orange-bright);
             text-transform: uppercase;
@@ -445,7 +409,7 @@
 
         .news-card h3 {
             margin: 0 0 8px 0;
-            font-size: 16px;
+            font-size: 15px;
             color: white;
             line-height: 1.4;
         }
@@ -453,30 +417,78 @@
         .news-card p {
             margin: 0;
             color: var(--text-muted);
-            font-size: 13px;
+            font-size: 12px;
             line-height: 1.5;
             flex-grow: 1;
         }
 
         .news-footer-info {
             padding: 10px 18px;
-            background-color: rgba(20, 10, 0, 0.6);
-            border-top: 1px solid rgba(255, 102, 0, 0.3);
+            background-color: rgba(0, 0, 0, 0.4);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
             font-size: 11px;
-            color: #aaa;
+            color: #888;
             display: flex;
             justify-content: space-between;
+        }
+
+        /* Barra Lateral (Sidebar de Patrocinadores y Playlist) */
+        .sidebar-ads {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .sidebar-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            border-bottom: 2px solid var(--tv-orange);
+            padding-bottom: 6px;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        .ad-banner-vertical, .ad-video-container {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.6);
+            transition: border-color 0.3s ease;
+        }
+
+        .ad-banner-vertical:hover, .ad-video-container:hover {
+            border-color: var(--tv-orange);
+        }
+
+        .ad-banner-vertical img {
+            width: 100%;
+            height: auto;
+            max-height: 480px;
+            object-fit: contain;
+            background: #000;
+            display: block;
+        }
+
+        .ad-video-container video {
+            width: 100%;
+            height: auto;
+            max-height: 480px;
+            object-fit: cover;
+            display: block;
+            background: #000;
         }
 
         /* Pie de página */
         footer {
             text-align: center;
             padding: 30px;
-            background-color: rgba(10, 5, 0, 0.95);
-            color: #888;
-            margin-top: 60px;
-            border-top: 1px solid rgba(255, 102, 0, 0.4);
-            font-size: 13px;
+            background-color: #080808;
+            color: #777;
+            margin-top: 50px;
+            border-top: 1px solid rgba(255, 102, 0, 0.2);
+            font-size: 12px;
         }
 
         /* Adaptabilidad móvil estricta */
@@ -488,6 +500,7 @@
                 flex-direction: column;
                 align-items: center;
                 text-align: center;
+                padding: 15px;
             }
             .header-widgets {
                 justify-content: center;
@@ -500,7 +513,7 @@
 </head>
 <body>
 
-    <!-- Fondo Animado Dinámico en Naranja Brillante, Negro y Blanco -->
+    <!-- Fondo Dinámico -->
     <div class="animated-bg"></div>
 
     <!-- Ticker de Último Minuto -->
@@ -511,14 +524,14 @@
         </div>
     </div>
 
-    <!-- Cabecera Institucional con Logo, Redes Sociales, Reloj y Contador -->
+    <!-- Cabecera Institucional Estilo Portal de Medios -->
     <header>
         <div class="logo-container">
             <img src="logo.jpg" alt="Miramax TV Logo">
             <div class="channel-name">MIRAMAX <span>TV</span></div>
         </div>
 
-        <!-- Enlaces directos a tus Redes Sociales Oficiales -->
+        <!-- Redes Sociales Oficiales -->
         <div class="social-header">
             <a href="https://www.facebook.com/share/v/1DX2jrntnr/" target="_blank" class="social-btn">Facebook</a>
             <a href="https://www.youtube.com/@miramaxtvcanal1136" target="_blank" class="social-btn">YouTube</a>
@@ -540,16 +553,16 @@
         </div>
     </header>
 
-    <!-- Banner con la Ciudad de Trujillo de Fondo -->
+    <!-- Banner Trujillo -->
     <div class="trujillo-hero">
         <h1>Señal Oficial desde la Ciudad de Trujillo</h1>
         <p>Cobertura Informativa y Entretenimiento Sin Límites</p>
     </div>
 
-    <!-- Contenedor Principal -->
+    <!-- Contenedor Principal Estilo Portal -->
     <div class="main-container">
         
-        <!-- COLUMNA PRINCIPAL -->
+        <!-- COLUMNA PRINCIPAL (Contenido de TV y Noticias) -->
         <div class="content-area">
             
             <!-- Reproductor Principal de TV en vivo (vMix / HLS) -->
@@ -557,9 +570,11 @@
                 <video id="video" controls autoplay muted playsinline></video>
             </div>
 
-            <!-- SECCIÓN: NUESTRA PROGRAMACIÓN EN VIVO -->
+            <!-- SECCIÓN: PROGRAMACIÓN EN VIVO -->
             <div class="section-box">
-                <div class="section-title">Nuestra Programación en Vivo</div>
+                <div class="section-title">
+                    <span>Nuestra Programación</span>
+                </div>
                 
                 <div class="shows-grid">
                     <!-- Programa 1 -->
@@ -570,7 +585,7 @@
                         <div class="show-info">
                             <div class="show-time">Lunes a Viernes • 8:00 AM</div>
                             <h3>Edición Matinal</h3>
-                            <p>Las noticias más importantes para empezar bien el día con entrevistas y enlaces en directo.</p>
+                            <p>Las noticias más importantes para empezar bien el día con entrevistas en directo.</p>
                         </div>
                     </div>
 
@@ -594,15 +609,17 @@
                         <div class="show-info">
                             <div class="show-time">Sábados • 7:00 PM</div>
                             <h3>Edición Especial Central</h3>
-                            <p>Un resumen detallado con los reportajes de investigación y los acontecimientos de la semana.</p>
+                            <p>Un resumen detallado con los reportajes de investigación y los acontecimientos semanales.</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- SECCIÓN: NOTICIAS DESTACADAS Y PORTADA -->
+            <!-- SECCIÓN: PORTADA Y NOTICIAS -->
             <div class="section-box">
-                <div class="section-title">Portada y Noticias Destacadas</div>
+                <div class="section-title">
+                    <span>Noticias Destacadas</span>
+                </div>
                 
                 <div class="news-grid">
                     <!-- Noticia 1 -->
@@ -610,7 +627,7 @@
                         <div class="news-card-content">
                             <span class="news-tag">Nacionales</span>
                             <h3>Avances y reportes especiales de la jornada nacional</h3>
-                            <p>Análisis profundo de los acontecimientos políticos, económicos y sociales más relevantes del país en tiempo real.</p>
+                            <p>Análisis profundo de los acontecimientos políticos y sociales más relevantes en tiempo real.</p>
                         </div>
                         <div class="news-footer-info">
                             <span>Redacción Miramax</span>
@@ -623,7 +640,7 @@
                         <div class="news-card-content">
                             <span class="news-tag">Regionales</span>
                             <h3>Crónica y actualidad de las principales provincias</h3>
-                            <p>Seguimiento detallado a la agenda local, desarrollo comunitario y eventos de interés general de la región.</p>
+                            <p>Seguimiento detallado a la agenda local, desarrollo comunitario y eventos de la región.</p>
                         </div>
                         <div class="news-footer-info">
                             <span>Sección Regional</span>
@@ -636,7 +653,7 @@
                         <div class="news-card-content">
                             <span class="news-tag">Internacionales</span>
                             <h3>Panorama global, tecnología y tendencias</h3>
-                            <p>Un recorrido por los acontecimientos que marcan la pauta internacional, geopolítica, ciencia y cultura global.</p>
+                            <p>Un recorrido por los acontecimientos que marcan la pauta internacional y cultural global.</p>
                         </div>
                         <div class="news-footer-info">
                             <span>Servicios Cable</span>
@@ -648,11 +665,11 @@
 
         </div>
 
-        <!-- BARRA LATERAL DERECHA (Playlist de Videos Publicitarios + Imágenes) -->
+        <!-- BARRA LATERAL DERECHA (Playlist de Videos y Anuncios) -->
         <div class="sidebar-ads">
-            <div class="section-title" style="margin-bottom: 15px; font-size: 17px;">Patrocinadores</div>
+            <div class="sidebar-title">Patrocinadores</div>
             
-            <!-- Playlist de Videos Publicitarios (reproduce anuncio.mp4 y anuncio1.mp4 en bucle automático) -->
+            <!-- Playlist de Videos Publicitarios Automática (anuncio.mp4 y anuncio1.mp4) -->
             <div class="ad-video-container">
                 <video id="ad-playlist-video" autoplay muted playsinline></video>
             </div>
@@ -701,15 +718,10 @@
             if (playlist.length === 0) return;
             adVideo.src = playlist[indiceActual];
             adVideo.play().catch(e => console.log("Autoplay bloqueado temporalmente por el navegador:", e));
-            
-            // Pasar al siguiente video de la lista de manera cíclica
             indiceActual = (indiceActual + 1) % playlist.length;
         }
 
-        // Cuando termine un anuncio, reproduce el siguiente automáticamente
         adVideo.addEventListener('ended', reproducirSiguienteAnuncio);
-
-        // Iniciar la playlist al cargar la página
         reproducirSiguienteAnuncio();
 
         // 3. Reloj y Fecha en Tiempo Real
