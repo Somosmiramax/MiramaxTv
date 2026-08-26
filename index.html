@@ -238,7 +238,7 @@
             letter-spacing: 1px;
         }
 
-        /* Contenedor Principal con diseño de 2 columnas (Contenido + Barra Lateral de Anuncios) */
+        /* Contenedor Principal (2 columnas: Contenido + Anuncios Verticales) */
         .main-container {
             max-width: 1200px;
             margin: 0 auto 40px auto;
@@ -252,7 +252,7 @@
             min-width: 0;
         }
 
-        /* Barra Lateral de Publicidad Vertical Adaptada */
+        /* Barra Lateral de Publicidad Vertical */
         .sidebar-ads {
             display: flex;
             flex-direction: column;
@@ -469,7 +469,7 @@
             font-size: 13px;
         }
 
-        /* Adaptabilidad móvil estricta: se convierte en una sola columna ordenada */
+        /* Adaptabilidad móvil estricta */
         @media (max-width: 900px) {
             .main-container {
                 grid-template-columns: 1fr;
@@ -536,10 +536,10 @@
         <p>Cobertura Informativa y Entretenimiento Sin Límites</p>
     </div>
 
-    <!-- Contenedor Principal (Organizado en Contenido Central + Barra Lateral de Anuncios Verticales) -->
+    <!-- Contenedor Principal -->
     <div class="main-container">
         
-        <!-- COLUMNA PRINCIPAL (Reproductor, Programas y Noticias) -->
+        <!-- COLUMNA PRINCIPAL -->
         <div class="content-area">
             
             <!-- Reproductor Principal de TV en vivo (vMix / HLS) -->
@@ -555,7 +555,7 @@
                     <!-- Programa 1 -->
                     <div class="show-card">
                         <div class="show-img-container">
-                            <img src="programa1.png" alt="Programa 1">
+                            <img src="programa1.jpg" alt="Programa 1">
                         </div>
                         <div class="show-info">
                             <div class="show-time">Lunes a Viernes • 8:00 AM</div>
@@ -567,7 +567,7 @@
                     <!-- Programa 2 -->
                     <div class="show-card">
                         <div class="show-img-container">
-                            <img src="programa2.png" alt="Programa 2">
+                            <img src="programa2.jpg" alt="Programa 2">
                         </div>
                         <div class="show-info">
                             <div class="show-time">Lunes a Viernes • 3:00 PM</div>
@@ -579,7 +579,7 @@
                     <!-- Programa 3 -->
                     <div class="show-card">
                         <div class="show-img-container">
-                            <img src="programa3.png" alt="Programa 3">
+                            <img src="programa3.jpg" alt="Programa 3">
                         </div>
                         <div class="show-info">
                             <div class="show-time">Sábados • 7:00 PM</div>
@@ -638,7 +638,7 @@
 
         </div>
 
-        <!-- BARRA LATERAL DERECHA (Tus Anuncios Verticales de Publicidad) -->
+        <!-- BARRA LATERAL DERECHA (Anuncios Verticales) -->
         <div class="sidebar-ads">
             <div class="section-title" style="margin-bottom: 15px; font-size: 17px;">Patrocinadores</div>
             
