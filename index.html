@@ -252,7 +252,7 @@
             min-width: 0;
         }
 
-        /* Barra Lateral de Publicidad (Videos e Imágenes) */
+        /* Barra Lateral de Publicidad (Videos en Playlist e Imágenes) */
         .sidebar-ads {
             display: flex;
             flex-direction: column;
@@ -282,7 +282,7 @@
             display: block;
         }
 
-        /* Reproductor de Video Publicitario */
+        /* Reproductor de Video Publicitario (Playlist) */
         .ad-video-container video {
             width: 100%;
             height: auto;
@@ -648,16 +648,13 @@
 
         </div>
 
-        <!-- BARRA LATERAL DERECHA (Videos y Anuncios de Publicidad) -->
+        <!-- BARRA LATERAL DERECHA (Playlist de Videos Publicitarios + Imágenes) -->
         <div class="sidebar-ads">
             <div class="section-title" style="margin-bottom: 15px; font-size: 17px;">Patrocinadores</div>
             
-            <!-- Video Publicitario 1 (anuncio1.mp4) -->
+            <!-- Playlist de Videos Publicitarios (reproduce anuncio.mp4 y anuncio1.mp4 en bucle automático) -->
             <div class="ad-video-container">
-                <video autoplay muted loop playsinline>
-                    <source src="anuncio1.mp4" type="video/mp4">
-                    Tu navegador no soporta videos publicitarios.
-                </video>
+                <video id="ad-playlist-video" autoplay muted playsinline></video>
             </div>
 
             <!-- Anuncio Vertical 1: Cachicadán -->
@@ -681,9 +678,9 @@
         &copy; 2026 MIRAMAX TV. Todos los derechos reservados. Transmisión Oficial en Directo desde Trujillo, Perú.
     </footer>
 
-    <!-- Scripts de Video HLS, Reloj y Contador -->
+    <!-- Scripts de Video HLS, Reloj, Contador y Playlist de Anuncios -->
     <script>
-        // 1. Reproductor de TV en vivo
+        // 1. Reproductor de TV en vivo (HLS)
         var videoSrc = "https://vs20.live.opencaster.com/henry_771aca96/index.m3u8";
         var video = document.getElementById('video');
 
@@ -695,7 +692,27 @@
             hls.attachMedia(video);
         }
 
-        // 2. Reloj y Fecha en Tiempo Real
+        // 2. Playlist Automática de Videos Publicitarios (anuncio.mp4 y anuncio1.mp4)
+        const playlist = ["anuncio.mp4", "anuncio1.mp4"];
+        let indiceActual = 0;
+        const adVideo = document.getElementById('ad-playlist-video');
+
+        function reproducirSiguienteAnuncio() {
+            if (playlist.length === 0) return;
+            adVideo.src = playlist[indiceActual];
+            adVideo.play().catch(e => console.log("Autoplay bloqueado temporalmente por el navegador:", e));
+            
+            // Pasar al siguiente video de la lista de manera cíclica
+            indiceActual = (indiceActual + 1) % playlist.length;
+        }
+
+        // Cuando termine un anuncio, reproduce el siguiente automáticamente
+        adVideo.addEventListener('ended', reproducirSiguienteAnuncio);
+
+        // Iniciar la playlist al cargar la página
+        reproducirSiguienteAnuncio();
+
+        // 3. Reloj y Fecha en Tiempo Real
         function actualizarReloj() {
             const ahora = new Date();
             document.getElementById('live-clock').innerText = ahora.toLocaleTimeString();
@@ -705,7 +722,7 @@
         setInterval(actualizarReloj, 1000);
         actualizarReloj();
 
-        // 3. Contador de Visitas Automático
+        // 4. Contador de Visitas Automático
         function gestionarVisitas() {
             let visitas = localStorage.getItem('miramax_visitas');
             if (!visitas) {
