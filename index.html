@@ -10,8 +10,8 @@
     <style>
         :root {
             --tv-orange: #ff6600;
-            --tv-orange-dark: #cc5200;
-            --dark-bg: #070707;
+            --tv-orange-bright: #ff8533;
+            --dark-bg: #050505;
             --card-bg: rgba(18, 18, 18, 0.92);
             --card-border: rgba(255, 102, 0, 0.5);
             --text-main: #ffffff;
@@ -27,34 +27,32 @@
             overflow-x: hidden;
         }
 
-        /* Fondo Animado con Destellos e Intensidad en Color Naranja */
-        .bg-video-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -2;
-            overflow: hidden;
-            background: #000;
-        }
-
-        .bg-video-container video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.45; /* Mayor presencia del tono animado */
-            filter: saturate(180%) hue-rotate(-10deg); /* Realza los tonos naranjas y cálidos */
-        }
-
-        .bg-overlay {
+        /* Fondo Animado con Degradados en Naranja Brillante, Negro y Blanco */
+        .animated-bg {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: -1;
-            background: linear-gradient(135deg, rgba(15,5,0,0.85) 0%, rgba(30,10,0,0.8) 50%, rgba(5,5,5,0.92) 100%);
+            background: linear-gradient(-45deg, #050505, #1a0800, #ff6600, #222222);
+            background-size: 400% 400%;
+            animation: gradientBG 12s ease infinite;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Capa de destellos sutiles en blanco y naranja */
+        .animated-bg::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at 50% 30%, rgba(255, 133, 51, 0.25) 0%, rgba(255, 255, 255, 0.05) 40%, transparent 70%);
+            pointer-events: none;
         }
 
         /* Ticker de Último Minuto */
@@ -96,13 +94,13 @@
 
         /* Cabecera del Canal Adaptable */
         header {
-            background: rgba(15, 15, 15, 0.88);
+            background: rgba(15, 10, 5, 0.88);
             backdrop-filter: blur(12px);
             padding: 15px 30px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            border-bottom: 1px solid rgba(255, 102, 0, 0.2);
+            border-bottom: 1px solid rgba(255, 102, 0, 0.3);
             flex-wrap: wrap;
             gap: 15px;
         }
@@ -119,7 +117,7 @@
             border-radius: 50%;
             border: 2px solid var(--tv-orange);
             object-fit: cover;
-            box-shadow: 0 0 20px rgba(255, 102, 0, 0.6);
+            box-shadow: 0 0 20px rgba(255, 102, 0, 0.7);
         }
 
         .channel-name {
@@ -141,8 +139,8 @@
         }
 
         .social-btn {
-            background: rgba(255, 102, 0, 0.1);
-            border: 1px solid rgba(255, 102, 0, 0.3);
+            background: rgba(255, 102, 0, 0.15);
+            border: 1px solid rgba(255, 102, 0, 0.4);
             color: white;
             padding: 8px 12px;
             border-radius: 6px;
@@ -155,7 +153,7 @@
         .social-btn:hover {
             background: var(--tv-orange);
             border-color: var(--tv-orange);
-            box-shadow: 0 0 10px rgba(255, 102, 0, 0.5);
+            box-shadow: 0 0 12px rgba(255, 102, 0, 0.8);
         }
 
         /* Widgets de Reloj y Visitas */
@@ -182,12 +180,12 @@
 
         #live-date {
             font-size: 10px;
-            color: var(--tv-orange);
+            color: var(--tv-orange-bright);
             text-transform: uppercase;
         }
 
         .visitor-counter {
-            background: rgba(255, 102, 0, 0.2);
+            background: rgba(255, 102, 0, 0.25);
             border: 1px solid var(--tv-orange);
             padding: 8px 10px;
             border-radius: 8px;
@@ -197,7 +195,7 @@
         }
 
         .visitor-counter span {
-            color: var(--tv-orange);
+            color: var(--tv-orange-bright);
         }
 
         .live-tag-header {
@@ -208,7 +206,7 @@
             font-weight: bold;
             border-radius: 20px;
             letter-spacing: 1px;
-            box-shadow: 0 0 15px rgba(229, 9, 20, 0.7);
+            box-shadow: 0 0 15px rgba(229, 9, 20, 0.8);
         }
 
         /* Hero con la foto de Trujillo */
@@ -235,7 +233,7 @@
 
         .trujillo-hero p {
             margin: 8px 0 0 0;
-            color: var(--tv-orange);
+            color: var(--tv-orange-bright);
             font-size: 14px;
             font-weight: bold;
             letter-spacing: 1px;
@@ -250,7 +248,7 @@
 
         /* Espacio para Publicidad / Monetización */
         .ad-banner {
-            background: rgba(20, 10, 0, 0.75);
+            background: rgba(25, 10, 0, 0.85);
             border: 2px dashed var(--tv-orange);
             color: #ddd;
             padding: 15px;
@@ -268,7 +266,7 @@
             background: #000;
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 20px 50px rgba(255, 102, 0, 0.2);
+            box-shadow: 0 20px 50px rgba(255, 102, 0, 0.3);
             border: 2px solid var(--tv-orange);
         }
 
@@ -291,7 +289,7 @@
             font-size: 20px;
             font-weight: bold;
             margin-bottom: 25px;
-            border-bottom: 2px solid rgba(255, 102, 0, 0.3);
+            border-bottom: 2px solid rgba(255, 102, 0, 0.4);
             padding-bottom: 10px;
             color: white;
         }
@@ -323,7 +321,7 @@
         .show-card:hover {
             transform: translateY(-5px);
             border-color: var(--tv-orange);
-            box-shadow: 0 12px 30px rgba(255, 102, 0, 0.4);
+            box-shadow: 0 12px 30px rgba(255, 102, 0, 0.5);
         }
 
         .show-img-container {
@@ -351,7 +349,7 @@
         .show-time {
             font-size: 12px;
             font-weight: bold;
-            color: var(--tv-orange);
+            color: var(--tv-orange-bright);
             text-transform: uppercase;
             letter-spacing: 1px;
             margin-bottom: 6px;
@@ -393,7 +391,7 @@
         .news-card:hover {
             transform: translateY(-5px);
             border-color: var(--tv-orange);
-            box-shadow: 0 12px 30px rgba(255, 102, 0, 0.4);
+            box-shadow: 0 12px 30px rgba(255, 102, 0, 0.5);
         }
 
         .news-card-content {
@@ -406,7 +404,7 @@
         .news-tag {
             font-size: 11px;
             font-weight: bold;
-            color: var(--tv-orange);
+            color: var(--tv-orange-bright);
             text-transform: uppercase;
             letter-spacing: 1px;
             margin-bottom: 8px;
@@ -430,7 +428,7 @@
         .news-footer-info {
             padding: 12px 20px;
             background-color: rgba(20, 10, 0, 0.6);
-            border-top: 1px solid rgba(255, 102, 0, 0.2);
+            border-top: 1px solid rgba(255, 102, 0, 0.3);
             font-size: 12px;
             color: #aaa;
             display: flex;
@@ -444,7 +442,7 @@
             background-color: rgba(10, 5, 0, 0.95);
             color: #888;
             margin-top: 60px;
-            border-top: 1px solid rgba(255, 102, 0, 0.3);
+            border-top: 1px solid rgba(255, 102, 0, 0.4);
             font-size: 13px;
         }
 
@@ -466,13 +464,8 @@
 </head>
 <body>
 
-    <!-- Video de Fondo Animado con Intensidad Naranja -->
-    <div class="bg-video-container">
-        <video autoplay muted loop playsinline>
-            <source src="https://assets.mixkit.co/videos/preview/mixkit-digital-animation-of-screens-and-lights-31952-large.mp4" type="video/mp4">
-        </video>
-    </div>
-    <div class="bg-overlay"></div>
+    <!-- Fondo Animado Dinámico en Naranja Brillante, Negro y Blanco -->
+    <div class="animated-bg"></div>
 
     <!-- Ticker de Último Minuto -->
     <div class="breaking-news">
