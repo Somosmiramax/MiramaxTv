@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MIRAMAX TV - Señal en Vivo y Programación</title>
+    <title>MIRAMAX TV - Señal en Vivo, Noticias y Programación desde Trujillo</title>
+    <meta name="description" content="Canal oficial de Miramax TV. Señal en vivo 24/7, noticias de última hora y programación desde Trujillo, Perú.">
     <!-- Librería HLS para reproducir la señal de TV -->
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <style>
@@ -11,7 +12,7 @@
             --tv-orange: #ff6600;
             --tv-orange-dark: #cc5200;
             --dark-bg: #090909;
-            --card-bg: rgba(18, 18, 18, 0.88);
+            --card-bg: rgba(18, 18, 18, 0.92);
             --card-border: rgba(255, 102, 0, 0.4);
             --text-main: #ffffff;
             --text-muted: #cccccc;
@@ -42,10 +43,9 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            opacity: 0.35; /* Transparencia para que combine con el estilo oscuro y profesional */
+            opacity: 0.3;
         }
 
-        /* Capa oscura superior para asegurar que los textos siempre se lean nítidos */
         .bg-overlay {
             position: fixed;
             top: 0;
@@ -53,12 +53,12 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            background: linear-gradient(135deg, rgba(10,10,10,0.9) 0%, rgba(20,8,0,0.85) 50%, rgba(5,5,5,0.95) 100%);
+            background: linear-gradient(135deg, rgba(10,10,10,0.92) 0%, rgba(20,8,0,0.88) 50%, rgba(5,5,5,0.96) 100%);
         }
 
-        /* Barra de Noticias en Movimiento (Ticker estilo TV) */
+        /* Ticker de Último Minuto */
         .breaking-news {
-            background-color: rgba(0, 0, 0, 0.9);
+            background-color: rgba(0, 0, 0, 0.95);
             color: white;
             padding: 10px 0;
             border-bottom: 2px solid var(--tv-orange);
@@ -95,7 +95,7 @@
 
         /* Cabecera del Canal */
         header {
-            background: rgba(15, 15, 15, 0.85);
+            background: rgba(15, 15, 15, 0.9);
             backdrop-filter: blur(12px);
             padding: 15px 30px;
             display: flex;
@@ -132,29 +132,53 @@
             color: var(--tv-orange);
         }
 
-        /* Widget de Fecha, Hora y Contador en la Cabecera */
+        /* Redes Sociales en la Cabecera */
+        .social-header {
+            display: flex;
+            gap: 10px;
+        }
+
+        .social-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .social-btn:hover {
+            background: var(--tv-orange);
+            border-color: var(--tv-orange);
+        }
+
+        /* Widgets de Reloj y Visitas */
         .header-widgets {
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 15px;
+            flex-wrap: wrap;
         }
 
         .live-clock-box {
             background: rgba(0, 0, 0, 0.7);
             border: 1px solid var(--card-border);
-            padding: 6px 15px;
+            padding: 6px 12px;
             border-radius: 8px;
             text-align: right;
         }
 
         #live-clock {
-            font-size: 14px;
+            font-size: 13px;
             font-weight: bold;
             color: white;
         }
 
         #live-date {
-            font-size: 11px;
+            font-size: 10px;
             color: var(--tv-orange);
             text-transform: uppercase;
         }
@@ -162,19 +186,15 @@
         .visitor-counter {
             background: rgba(255, 102, 0, 0.15);
             border: 1px solid var(--tv-orange);
-            padding: 8px 12px;
+            padding: 8px 10px;
             border-radius: 8px;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: bold;
             color: white;
-            display: flex;
-            align-items: center;
-            gap: 6px;
         }
 
         .visitor-counter span {
             color: var(--tv-orange);
-            font-size: 14px;
         }
 
         .live-tag-header {
@@ -194,7 +214,7 @@
             background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url('trujillo.jpg');
             background-size: cover;
             background-position: center;
-            padding: 40px 20px;
+            padding: 35px 20px;
             text-align: center;
             border-bottom: 3px solid var(--tv-orange);
             margin-bottom: 30px;
@@ -203,7 +223,7 @@
 
         .trujillo-hero h1 {
             margin: 0;
-            font-size: 28px;
+            font-size: 26px;
             color: white;
             text-transform: uppercase;
             letter-spacing: 2px;
@@ -213,7 +233,7 @@
         .trujillo-hero p {
             margin: 8px 0 0 0;
             color: var(--tv-orange);
-            font-size: 15px;
+            font-size: 14px;
             font-weight: bold;
             letter-spacing: 1px;
         }
@@ -223,6 +243,20 @@
             max-width: 1200px;
             margin: 0 auto 40px auto;
             padding: 0 20px;
+        }
+
+        /* Espacio para Publicidad / Monetización */
+        .ad-banner {
+            background: rgba(20, 20, 20, 0.8);
+            border: 2px dashed var(--tv-orange);
+            color: #aaa;
+            padding: 15px;
+            text-align: center;
+            border-radius: 10px;
+            margin: 30px 0;
+            font-size: 13px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
         }
 
         /* Reproductor de Video Estilo Broadcast */
@@ -333,7 +367,7 @@
             line-height: 1.4;
         }
 
-        /* Sección de Noticias Profesionales */
+        /* Sección de Noticias Destacadas */
         .news-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -414,7 +448,7 @@
 </head>
 <body>
 
-    <!-- Video de Fondo Animado en Tonos Naranja, Negro y Blanco -->
+    <!-- Video de Fondo Animado Naranja, Negro y Blanco -->
     <div class="bg-video-container">
         <video autoplay muted loop playsinline>
             <source src="https://assets.mixkit.co/videos/preview/mixkit-digital-animation-of-screens-and-lights-31952-large.mp4" type="video/mp4">
@@ -426,25 +460,31 @@
     <div class="breaking-news">
         <div class="breaking-badge">ÚLTIMO MINUTO</div>
         <div class="breaking-ticker">
-            🔴 Transmisión continua 24/7 en alta definición desde Trujillo, Perú • Sigue nuestra programación exclusiva y cobertura especial con las noticias más destacadas.
+            🔴 Transmisión en vivo 24/7 en alta definición desde Trujillo, Perú • Sigue nuestra programación exclusiva y cobertura periodística con las noticias más destacadas de la región.
         </div>
     </div>
 
-    <!-- Cabecera Institucional con Logo, Reloj y Contador de Visitas -->
+    <!-- Cabecera Institucional con Logo, Redes, Reloj y Contador -->
     <header>
         <div class="logo-container">
             <img src="logo.jpg" alt="Miramax TV Logo">
             <div class="channel-name">MIRAMAX <span>TV</span></div>
         </div>
 
+        <!-- Enlaces directos a Redes Sociales -->
+        <div class="social-header">
+            <a href="https://facebook.com" target="_blank" class="social-btn">Facebook</a>
+            <a href="https://youtube.com" target="_blank" class="social-btn">YouTube</a>
+            <a href="https://tiktok.com" target="_blank" class="social-btn">TikTok</a>
+            <a href="https://instagram.com" target="_blank" class="social-btn">Instagram</a>
+        </div>
+
         <div class="header-widgets">
-            <!-- Reloj y Fecha en Vivo -->
             <div class="live-clock-box">
                 <div id="live-clock">00:00:00</div>
                 <div id="live-date">Cargando fecha...</div>
             </div>
 
-            <!-- Contador de Visitas -->
             <div class="visitor-counter">
                 👁️ Visitas: <span id="visit-count">1,420</span>
             </div>
@@ -461,7 +501,12 @@
 
     <div class="main-container">
         
-        <!-- Reproductor Principal de TV -->
+        <!-- Espacio Publicitario / Monetización 1 -->
+        <div class="ad-banner">
+            📢 Espacio Publicitario / Patrocinadores Oficiales (Monetización)
+        </div>
+
+        <!-- Reproductor Principal de TV en vivo (vMix / HLS) -->
         <div class="broadcast-container">
             <video id="video" controls autoplay muted playsinline></video>
         </div>
@@ -509,9 +554,14 @@
             </div>
         </div>
 
-        <!-- SECCIÓN: ACTUALIDAD Y NOTICIAS -->
+        <!-- Espacio Publicitario / Monetización 2 -->
+        <div class="ad-banner">
+            ⭐ Anuncia aquí tu marca o negocio en Miramax TV
+        </div>
+
+        <!-- SECCIÓN: NOTICIAS DESTACADAS Y PORTADA -->
         <div class="section-box">
-            <div class="section-title">Actualidad y Cobertura Global</div>
+            <div class="section-title">Portada y Noticias Destacadas</div>
             
             <div class="news-grid">
                 <!-- Noticia 1 -->
@@ -585,7 +635,7 @@
         setInterval(actualizarReloj, 1000);
         actualizarReloj();
 
-        // 3. Contador de Visitas Automático por navegador
+        // 3. Contador de Visitas Automático
         function gestionarVisitas() {
             let visitas = localStorage.getItem('miramax_visitas');
             if (!visitas) {
