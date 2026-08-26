@@ -238,7 +238,7 @@
             letter-spacing: 1px;
         }
 
-        /* Contenedor Principal (2 columnas: Contenido + Anuncios Verticales) */
+        /* Contenedor Principal (2 columnas) */
         .main-container {
             max-width: 1200px;
             margin: 0 auto 40px auto;
@@ -252,14 +252,14 @@
             min-width: 0;
         }
 
-        /* Barra Lateral de Publicidad Vertical */
+        /* Barra Lateral de Publicidad (Videos e Imágenes) */
         .sidebar-ads {
             display: flex;
             flex-direction: column;
             gap: 25px;
         }
 
-        .ad-banner-vertical {
+        .ad-banner-vertical, .ad-video-container {
             background: rgba(18, 18, 18, 0.9);
             border: 2px solid var(--tv-orange);
             border-radius: 12px;
@@ -268,7 +268,7 @@
             transition: transform 0.3s ease;
         }
 
-        .ad-banner-vertical:hover {
+        .ad-banner-vertical:hover, .ad-video-container:hover {
             transform: translateY(-5px);
             box-shadow: 0 12px 35px rgba(255, 102, 0, 0.4);
         }
@@ -280,6 +280,16 @@
             object-fit: contain;
             background: #000;
             display: block;
+        }
+
+        /* Reproductor de Video Publicitario */
+        .ad-video-container video {
+            width: 100%;
+            height: auto;
+            max-height: 520px;
+            object-fit: cover;
+            display: block;
+            background: #000;
         }
 
         /* Reproductor de Video Estilo Broadcast */
@@ -501,7 +511,7 @@
         </div>
     </div>
 
-    <!-- Cabecera Institucional con Logo, Redes Sociales Reales, Reloj y Contador -->
+    <!-- Cabecera Institucional con Logo, Redes Sociales, Reloj y Contador -->
     <header>
         <div class="logo-container">
             <img src="logo.jpg" alt="Miramax TV Logo">
@@ -638,10 +648,18 @@
 
         </div>
 
-        <!-- BARRA LATERAL DERECHA (Anuncios Verticales) -->
+        <!-- BARRA LATERAL DERECHA (Videos e Imágenes de Publicidad) -->
         <div class="sidebar-ads">
             <div class="section-title" style="margin-bottom: 15px; font-size: 17px;">Patrocinadores</div>
             
+            <!-- Video Publicitario (Sube tu video como anuncio.mp4 a GitHub) -->
+            <div class="ad-video-container">
+                <video autoplay muted loop playsinline>
+                    <source src="anuncio.mp4" type="video/mp4">
+                    Tu navegador no soporta videos publicitarios.
+                </video>
+            </div>
+
             <!-- Anuncio Vertical 1: Cachicadán -->
             <div class="ad-banner-vertical">
                 <a href="https://www.facebook.com/share/v/1DX2jrntnr/" target="_blank">
