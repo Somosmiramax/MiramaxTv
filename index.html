@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MIRAMAX TV - Señal en Vivo, Noticias y Programación desde Trujillo</title>
     <meta name="description" content="Canal oficial de Miramax TV. Señal en vivo 24/7, noticias de última hora y programación desde Trujillo, Perú.">
-    <!-- Librería HLS para reproducir la señal de TV -->
-    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <!-- Librería Clappr con soporte nativo para selector de calidades en HLS -->
+    <script src="https://cdn.jsdelivr.net/npm/@clappr/player@0.4.0/dist/clappr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/level-selector@latest/dist/level-selector.min.js"></script>
     <style>
         :root {
             --tv-orange: #ff6600;
@@ -211,7 +212,7 @@
             box-shadow: 0 0 12px rgba(229, 9, 20, 0.8);
         }
 
-        /* Banner Hero con Ciudad de Trujillo */
+        /* Banner Trujillo */
         .trujillo-hero {
             position: relative;
             background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.85)), url('trujillo.jpg');
@@ -255,7 +256,7 @@
             min-width: 0;
         }
 
-        /* Reproductor de TV Principal */
+        /* Reproductor de TV Principal con Selector de Calidad */
         .broadcast-container {
             position: relative;
             background: #000;
@@ -264,16 +265,15 @@
             box-shadow: 0 15px 40px rgba(255, 102, 0, 0.25);
             border: 2px solid var(--tv-orange);
             margin-bottom: 30px;
+            height: 480px;
         }
 
-        video#video {
+        #player-wrapper {
             width: 100%;
-            max-height: 520px;
-            display: block;
-            background: black;
+            height: 100%;
         }
 
-        /* Secciones y Títulos de Categoría Estilo Cosmos */
+        /* Secciones y Títulos */
         .section-box {
             margin-top: 35px;
         }
@@ -366,7 +366,7 @@
             line-height: 1.4;
         }
 
-        /* Cuadrícula de Noticias Estilo Portal */
+        /* Cuadrícula de Noticias */
         .news-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -432,7 +432,7 @@
             justify-content: space-between;
         }
 
-        /* Barra Lateral (Sidebar de Patrocinadores y Playlist) */
+        /* Barra Lateral */
         .sidebar-ads {
             display: flex;
             flex-direction: column;
@@ -480,6 +480,39 @@
             background: #000;
         }
 
+        /* Estilo del Botón Flotante de WhatsApp */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            background-color: #25d366;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+            font-weight: bold;
+            font-size: 14px;
+            gap: 10px;
+        }
+
+        .whatsapp-float img {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.08);
+            background-color: #20ba5a;
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+        }
+
         /* Pie de página */
         footer {
             text-align: center;
@@ -515,6 +548,12 @@
 
     <!-- Fondo Dinámico -->
     <div class="animated-bg"></div>
+
+    <!-- Botón Flotante de WhatsApp -->
+    <a href="https://wa.me/51922110371?text=¡Hola!%20Vi%20Miramax%20TV%20y%20deseo%20más%20información." class="whatsapp-float" target="_blank">
+        <img src="whatsapp.jpg" alt="WhatsApp">
+        <span>WhatsApp</span>
+    </a>
 
     <!-- Ticker de Último Minuto -->
     <div class="breaking-news">
@@ -562,12 +601,12 @@
     <!-- Contenedor Principal Estilo Portal -->
     <div class="main-container">
         
-        <!-- COLUMNA PRINCIPAL (Contenido de TV y Noticias) -->
+        <!-- COLUMNA PRINCIPAL -->
         <div class="content-area">
             
-            <!-- Reproductor Principal de TV en vivo (vMix / HLS) -->
+            <!-- Reproductor de TV en vivo con Selector de Calidad Integrado -->
             <div class="broadcast-container">
-                <video id="video" controls autoplay muted playsinline></video>
+                <div id="player-wrapper"></div>
             </div>
 
             <!-- SECCIÓN: PROGRAMACIÓN EN VIVO -->
@@ -665,23 +704,23 @@
 
         </div>
 
-        <!-- BARRA LATERAL DERECHA (Playlist de Videos y Anuncios) -->
+        <!-- BARRA LATERAL DERECHA -->
         <div class="sidebar-ads">
             <div class="sidebar-title">Patrocinadores</div>
             
-            <!-- Playlist de Videos Publicitarios Automática (anuncio.mp4 y anuncio1.mp4) -->
+            <!-- Playlist de Videos Publicitarios Automática -->
             <div class="ad-video-container">
                 <video id="ad-playlist-video" autoplay muted playsinline></video>
             </div>
 
-            <!-- Anuncio Vertical 1: Cachicadán -->
+            <!-- Anuncio Vertical 1 -->
             <div class="ad-banner-vertical">
                 <a href="https://www.facebook.com/share/v/1DX2jrntnr/" target="_blank">
                     <img src="anuncio1.jpg" alt="Publicidad Cachicadán">
                 </a>
             </div>
 
-            <!-- Anuncio Vertical 2: Fibra Óptica -->
+            <!-- Anuncio Vertical 2 -->
             <div class="ad-banner-vertical">
                 <a href="https://www.facebook.com/share/v/1DX2jrntnr/" target="_blank">
                     <img src="anuncio2.jpg" alt="Publicidad Internet y Televisión">
@@ -695,21 +734,29 @@
         &copy; 2026 MIRAMAX TV. Todos los derechos reservados. Transmisión Oficial en Directo desde Trujillo, Perú.
     </footer>
 
-    <!-- Scripts de Video HLS, Reloj, Contador y Playlist de Anuncios -->
+    <!-- Scripts de Reproductor Profesional con Selector de Calidad, Reloj, Contador y Playlist -->
     <script>
-        // 1. Reproductor de TV en vivo (HLS)
-        var videoSrc = "https://vs20.live.opencaster.com/henry_771aca96/index.m3u8";
-        var video = document.getElementById('video');
+        // 1. Reproductor de TV en Vivo con Selector de Calidades (Clappr Player)
+        var player = new Clappr.Player({
+            source: "https://vs20.live.opencaster.com/henry_771aca96/index.m3u8",
+            parentId: "#player-wrapper",
+            plugins: [LevelSelector],
+            levelSelectorConfig: {
+                labels: {
+                    2: '1080p',
+                    1: '720p',
+                    0: '480p / 240p'
+                },
+                defaultBitrate:-1,
+                title: 'Calidad'
+            },
+            autoPlay: true,
+            mute: false,
+            height: '100%',
+            width: '100%'
+        });
 
-        if (video.canPlayType('application/vnd.apple.mpegurl')) {
-            video.src = videoSrc;
-        } else if (Hls.isSupported()) {
-            var hls = new Hls();
-            hls.loadSource(videoSrc);
-            hls.attachMedia(video);
-        }
-
-        // 2. Playlist Automática de Videos Publicitarios (anuncio.mp4 y anuncio1.mp4)
+        // 2. Playlist Automática de Videos Publicitarios
         const playlist = ["anuncio.mp4", "anuncio1.mp4"];
         let indiceActual = 0;
         const adVideo = document.getElementById('ad-playlist-video');
@@ -717,7 +764,7 @@
         function reproducirSiguienteAnuncio() {
             if (playlist.length === 0) return;
             adVideo.src = playlist[indiceActual];
-            adVideo.play().catch(e => console.log("Autoplay bloqueado temporalmente por el navegador:", e));
+            adVideo.play().catch(e => console.log("Autoplay silenciado por políticas del navegador:", e));
             indiceActual = (indiceActual + 1) % playlist.length;
         }
 
