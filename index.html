@@ -134,11 +134,12 @@
             color: var(--tv-orange);
         }
 
-        /* Redes Sociales Oficiales */
+        /* Redes Sociales y Enlaces Oficiales */
         .social-header {
             display: flex;
             gap: 8px;
             flex-wrap: wrap;
+            align-items: center;
         }
 
         .social-btn {
@@ -157,6 +158,26 @@
             background: var(--tv-orange);
             border-color: var(--tv-orange);
             box-shadow: 0 0 10px rgba(255, 102, 0, 0.6);
+        }
+
+        /* Botón Destacado para Miramax Net */
+        .net-btn {
+            background: var(--tv-orange);
+            border: 1px solid var(--tv-orange-bright);
+            color: white;
+            padding: 7px 14px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            box-shadow: 0 0 12px rgba(255, 102, 0, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .net-btn:hover {
+            background: #e55c00;
+            box-shadow: 0 0 18px rgba(255, 102, 0, 0.8);
         }
 
         /* Widgets de Reloj y Visitas */
@@ -570,8 +591,9 @@
             <div class="channel-name">MIRAMAX <span>TV</span></div>
         </div>
 
-        <!-- Redes Sociales Oficiales -->
+        <!-- Redes Sociales y Enlace a Miramax Net -->
         <div class="social-header">
+            <a href="https://miramaxnet.pe/" target="_blank" class="net-btn">🌐 Miramax Net</a>
             <a href="https://www.facebook.com/share/v/1DX2jrntnr/" target="_blank" class="social-btn">Facebook</a>
             <a href="https://www.youtube.com/@miramaxtvcanal1136" target="_blank" class="social-btn">YouTube</a>
             <a href="https://www.tiktok.com/@somosmiramax" target="_blank" class="social-btn">TikTok</a>
@@ -604,7 +626,7 @@
         <!-- COLUMNA PRINCIPAL -->
         <div class="content-area">
             
-            <!-- Reproductor de TV en vivo con Conmutador de Emergencia (Si no hay vivo, carga anuncio1.mp4) -->
+            <!-- Reproductor de TV en vivo con Conmutador de Emergencia -->
             <div class="broadcast-container">
                 <div id="player-wrapper"></div>
             </div>
