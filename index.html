@@ -345,7 +345,7 @@
 
         .show-img-container {
             width: 100%;
-            height: 150px;
+            height: 220px;
             overflow: hidden;
             background-color: #000;
         }
@@ -354,6 +354,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            object-position: center 25%; /* Baja la imagen para que no corte la cabeza */
             transition: transform 0.3s ease;
         }
 
@@ -650,7 +651,7 @@
                         </div>
                     </div>
 
-                    <!-- Programa 2: Miramax Deportes (Apunta a deporte.jpg) -->
+                    <!-- Programa 2: Miramax Deportes (Apunta a deporte.jpg con enfoque ajustado) -->
                     <div class="show-card">
                         <div class="show-img-container">
                             <img src="deporte.jpg" alt="Miramax Deportes">
