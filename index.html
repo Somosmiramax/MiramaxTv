@@ -285,13 +285,110 @@
             overflow: hidden;
             box-shadow: 0 15px 40px rgba(255, 102, 0, 0.25);
             border: 2px solid var(--tv-orange);
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             height: 480px;
         }
 
         #player-wrapper {
             width: 100%;
             height: 100%;
+        }
+
+        /* Caja de Comentarios Interactiva en Vivo */
+        .comments-section {
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 35px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .comments-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 2px solid var(--tv-orange);
+            padding-bottom: 6px;
+        }
+
+        .comment-form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .comment-input, .comment-textarea {
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid var(--card-border);
+            border-radius: 6px;
+            padding: 10px 14px;
+            color: white;
+            font-family: inherit;
+            font-size: 13px;
+        }
+
+        .comment-textarea {
+            resize: vertical;
+            height: 70px;
+        }
+
+        .comment-input:focus, .comment-textarea:focus {
+            outline: none;
+            border-color: var(--tv-orange);
+            box-shadow: 0 0 8px rgba(255, 102, 0, 0.4);
+        }
+
+        .comment-submit-btn {
+            background-color: var(--tv-orange);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 13px;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            align-self: flex-end;
+        }
+
+        .comment-submit-btn:hover {
+            background-color: #e55c00;
+            box-shadow: 0 0 12px rgba(255, 102, 0, 0.6);
+        }
+
+        .comments-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-height: 300px;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+
+        .comment-item {
+            background: rgba(0, 0, 0, 0.5);
+            border-left: 3px solid var(--tv-orange);
+            padding: 10px 14px;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+
+        .comment-author {
+            font-weight: bold;
+            color: var(--tv-orange-bright);
+            margin-bottom: 4px;
+        }
+
+        .comment-text {
+            color: #ddd;
+            margin: 0;
+            word-break: break-word;
         }
 
         /* Secciones y Títulos */
@@ -354,7 +451,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: center 25%; /* Baja la imagen para que no corte la cabeza */
+            object-position: center 25%;
             transition: transform 0.3s ease;
         }
 
@@ -632,6 +729,27 @@
                 <div id="player-wrapper"></div>
             </div>
 
+            <!-- CAJA DE COMENTARIOS EN VIVO -->
+            <div class="comments-section">
+                <div class="comments-title">💬 Comentarios en Directo</div>
+                <form class="comment-form" id="comment-form">
+                    <input type="text" id="comment-name" class="comment-input" placeholder="Tu nombre o usuario..." required>
+                    <textarea id="comment-text" class="comment-textarea" placeholder="Escribe tu mensaje o saludo para la transmisión..." required></textarea>
+                    <button type="submit" class="comment-submit-btn">Enviar Comentario</button>
+                </form>
+                <div class="comments-list" id="comments-list">
+                    <!-- Comentarios de ejemplo iniciales -->
+                    <div class="comment-item">
+                        <div class="comment-author">Carlos Mendoza</div>
+                        <p class="comment-text">¡Excelente señal desde Trujillo! Saludos a todo el equipo de Miramax TV.</p>
+                    </div>
+                    <div class="comment-item">
+                        <div class="comment-author">Rosa María</div>
+                        <p class="comment-text">¡Súper sintonía con Miramax Deportes y Katherine Soto!</p>
+                    </div>
+                </div>
+            </div>
+
             <!-- SECCIÓN: PROGRAMACIÓN EN VIVO -->
             <div class="section-box">
                 <div class="section-title">
@@ -651,7 +769,7 @@
                         </div>
                     </div>
 
-                    <!-- Programa 2: Miramax Deportes (Apunta a deporte.jpg con enfoque ajustado) -->
+                    <!-- Programa 2: Miramax Deportes -->
                     <div class="show-card">
                         <div class="show-img-container">
                             <img src="deporte.jpg" alt="Miramax Deportes">
@@ -757,7 +875,7 @@
         &copy; 2026 MIRAMAX TV. Todos los derechos reservados. Transmisión Oficial en Directo desde Trujillo, Perú.
     </footer>
 
-    <!-- Scripts con Detección de Caída de Señal y Respaldo en Video -->
+    <!-- Scripts con Reproductor, Reloj, Visitas, Respaldo y Caja de Comentarios Interactiva -->
     <script>
         // 1. Reproductor de TV en Vivo con Detección de Error / Sin Señal
         var liveStreamUrl = "https://vs20.live.opencaster.com/henry_771aca96/index.m3u8";
@@ -830,6 +948,55 @@
             document.getElementById('visit-count').innerText = visitas.toLocaleString();
         }
         gestionarVisitas();
+
+        // 5. Sistema de Comentarios Interactivos en Vivo (Guardado en Memoria del Navegador)
+        const commentForm = document.getElementById('comment-form');
+        const commentsList = document.getElementById('comments-list');
+
+        // Cargar comentarios guardados previamente
+        function cargarComentarios() {
+            let guardados = JSON.parse(localStorage.getItem('miramax_comentarios')) || [];
+            guardados.forEach(c => agregarComentarioDOM(c.autor, c.texto, false));
+        }
+
+        function agregarComentarioDOM(autor, texto, alPrincipio = true) {
+            const div = document.createElement('div');
+            div.className = 'comment-item';
+            div.innerHTML = `
+                <div class="comment-author">${escapeHtml(autor)}</div>
+                <p class="comment-text">${escapeHtml(texto)}</p>
+            `;
+            if (alPrincipio) {
+                commentsList.prepend(div);
+            } else {
+                commentsList.appendChild(div);
+            }
+        }
+
+        commentForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const autor = document.getElementById('comment-name').value.trim();
+            const texto = document.getElementById('comment-text').value.trim();
+
+            if (autor && texto) {
+                agregarComentarioDOM(autor, texto, true);
+                
+                // Guardar en localStorage
+                let guardados = JSON.parse(localStorage.getItem('miramax_comentarios')) || [];
+                guardados.unshift({ autor, texto });
+                if (guardados.length > 30) guardados.pop(); // Limitar a los últimos 30 comentarios
+                localStorage.setItem('miramax_comentarios', JSON.stringify(guardados));
+
+                // Limpiar campo de texto pero mantener el nombre
+                document.getElementById('comment-text').value = '';
+            }
+        });
+
+        function escapeHtml(text) {
+            return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+        }
+
+        cargarComentarios();
     </script>
 
 </body>
