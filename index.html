@@ -134,7 +134,7 @@
             color: var(--tv-orange);
         }
 
-        /* Menú de Categorías y Redes Sociales */
+        /* Redes Sociales, Pestaña de Noticias y Enlaces Oficiales */
         .social-header {
             display: flex;
             gap: 8px;
@@ -177,6 +177,24 @@
         .net-btn:hover {
             background: #e55c00;
             box-shadow: 0 0 18px rgba(255, 102, 0, 0.8);
+        }
+
+        .news-tab-btn {
+            background: #222;
+            border: 1px solid var(--tv-orange);
+            color: white;
+            padding: 7px 14px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .news-tab-btn:hover {
+            background: var(--tv-orange);
+            box-shadow: 0 0 10px rgba(255, 102, 0, 0.6);
         }
 
         /* Widgets de Reloj y Visitas */
@@ -390,51 +408,6 @@
             word-break: break-word;
         }
 
-        /* Sección de Noticia Destacada Integrada (Estilo Diario) */
-        .featured-news-box {
-            background-color: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 10px;
-            padding: 25px;
-            margin-bottom: 35px;
-        }
-
-        .featured-news-tag {
-            background-color: var(--tv-orange);
-            color: white;
-            padding: 4px 10px;
-            font-size: 10px;
-            font-weight: bold;
-            text-transform: uppercase;
-            border-radius: 3px;
-            display: inline-block;
-            margin-bottom: 12px;
-        }
-
-        .featured-news-title {
-            font-size: 22px;
-            font-weight: 900;
-            color: white;
-            margin-bottom: 12px;
-            line-height: 1.4;
-        }
-
-        .featured-news-img {
-            width: 100%;
-            max-height: 350px;
-            object-fit: cover;
-            border-radius: 6px;
-            margin-bottom: 15px;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .featured-news-excerpt {
-            color: var(--text-muted);
-            font-size: 13px;
-            line-height: 1.5;
-            margin-bottom: 15px;
-        }
-
         /* Secciones y Títulos */
         .section-box {
             margin-top: 35px;
@@ -529,7 +502,7 @@
             line-height: 1.4;
         }
 
-        /* Cuadrícula de Noticias */
+        /* Cuadrícula de Noticias (Enlace a noticias.html) */
         .news-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -643,7 +616,7 @@
             background: #000;
         }
 
-        /* Estilo del Botón Flotante de WhatsApp */
+        /* Botón Flotante de WhatsApp */
         .whatsapp-float {
             position: fixed;
             bottom: 25px;
@@ -676,7 +649,6 @@
             box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
         }
 
-        /* Pie de página */
         footer {
             text-align: center;
             padding: 30px;
@@ -708,16 +680,13 @@
 </head>
 <body>
 
-    <!-- Fondo Dinámico -->
     <div class="animated-bg"></div>
 
-    <!-- Botón Flotante de WhatsApp -->
     <a href="https://wa.me/51922110371?text=¡Hola!%20Vi%20Miramax%20TV%20y%20deseo%20más%20información." class="whatsapp-float" target="_blank">
         <img src="whatsapp.jpg" alt="WhatsApp">
         <span>WhatsApp</span>
     </a>
 
-    <!-- Ticker de Último Minuto -->
     <div class="breaking-news">
         <div class="breaking-badge">ÚLTIMO MINUTO</div>
         <div class="breaking-ticker">
@@ -725,16 +694,15 @@
         </div>
     </div>
 
-    <!-- Cabecera Institucional Estilo Portal de Medios -->
     <header>
         <div class="logo-container">
             <img src="logo.jpg" alt="Miramax TV Logo">
             <div class="channel-name">MIRAMAX <span>TV</span></div>
         </div>
 
-        <!-- Redes Sociales y Enlace a Miramax Net -->
         <div class="social-header">
             <a href="https://miramaxnet.pe/" target="_blank" class="net-btn">🌐 Miramax Net</a>
+            <a href="noticias.html" class="news-tab-btn">📰 Noticias</a>
             <a href="https://www.facebook.com/share/v/1DX2jrntnr/" target="_blank" class="social-btn">Facebook</a>
             <a href="https://www.youtube.com/@miramaxtvcanal1136" target="_blank" class="social-btn">YouTube</a>
             <a href="https://www.tiktok.com/@somosmiramax" target="_blank" class="social-btn">TikTok</a>
@@ -755,24 +723,19 @@
         </div>
     </header>
 
-    <!-- Banner Trujillo -->
     <div class="trujillo-hero">
         <h1>Señal Oficial desde la Ciudad de Trujillo</h1>
         <p>Cobertura Informativa y Entretenimiento Sin Límites</p>
     </div>
 
-    <!-- Contenedor Principal Estilo Portal -->
     <main class="main-container">
         
-        <!-- COLUMNA PRINCIPAL -->
         <div class="content-area">
             
-            <!-- 1. Reproductor de TV en vivo con respaldo automático -->
             <div class="broadcast-container">
                 <div id="player-wrapper"></div>
             </div>
 
-            <!-- 2. Caja de Comentarios en Vivo (Justo debajo del video) -->
             <div class="comments-section">
                 <div class="comments-title">💬 Comentarios en Directo</div>
                 <form class="comment-form" id="comment-form">
@@ -792,25 +755,12 @@
                 </div>
             </div>
 
-            <!-- 3. Noticia Destacada Estilo Diario (Libros en bolsas) -->
-            <div class="featured-news-box">
-                <span class="featured-news-tag">Locales / Cultura</span>
-                <h2 class="featured-news-title">Gerente edil confirma que libros donados por famoso periodista MJO están en bolsas</h2>
-                <img src="noticia1.jpg" alt="Libros donados" class="featured-news-img">
-                <p class="featured-news-excerpt">
-                    <strong>• Paolo Cueva señaló que estarán a buen recaudo y serán reubicados en la Biblioteca Central de la Municipalidad Provincial de Trujillo.</strong><br><br>
-                    TRUJILLO// Los libros donados por el periodista Manuel Jesús Orbegoso (MJO) están a buen recaudo y las autoridades municipales han tomado cartas en el asunto para garantizar su preservación ante la preocupación de la ciudadanía y los círculos culturales de la región. Próximamente serán inventariados para uso público.
-                </p>
-            </div>
-
-            <!-- 4. SECCIÓN: PROGRAMACIÓN EN VIVO -->
             <div class="section-box">
                 <div class="section-title">
                     <span>Nuestra Programación</span>
                 </div>
                 
                 <div class="shows-grid">
-                    <!-- Programa 1 -->
                     <div class="show-card">
                         <div class="show-img-container">
                             <img src="programa1.jpg" alt="Edición Matinal">
@@ -822,7 +772,6 @@
                         </div>
                     </div>
 
-                    <!-- Programa 2: Miramax Deportes -->
                     <div class="show-card">
                         <div class="show-img-container">
                             <img src="deporte.jpg" alt="Miramax Deportes">
@@ -834,7 +783,6 @@
                         </div>
                     </div>
 
-                    <!-- Programa 3 -->
                     <div class="show-card">
                         <div class="show-img-container">
                             <img src="programa3.jpg" alt="Edición Especial">
@@ -848,26 +796,25 @@
                 </div>
             </div>
 
-            <!-- 5. SECCIÓN: OTRAS NOTICIAS -->
             <div class="section-box">
                 <div class="section-title">
                     <span>Noticias Destacadas</span>
                 </div>
                 
                 <div class="news-grid">
-                    <a href="#" class="news-card">
+                    <a href="noticias.html" class="news-card">
                         <div class="news-card-content">
-                            <span class="news-tag">Nacionales</span>
-                            <h3>Avances y reportes especiales de la jornada nacional</h3>
-                            <p>Análisis profundo de los acontecimientos políticos y sociales más relevantes en tiempo real.</p>
+                            <span class="news-tag">Locales / Cultura</span>
+                            <h3>Gerente edil confirma que libros donados están en bolsas</h3>
+                            <p>Paolo Cueva señaló que estarán a buen recaudo y reubicados en la Biblioteca Central...</p>
                         </div>
                         <div class="news-footer-info">
                             <span>Redacción Miramax</span>
-                            <span>Actualizado hoy</span>
+                            <span>Leer artículo completo</span>
                         </div>
                     </a>
 
-                    <a href="#" class="news-card">
+                    <a href="noticias.html" class="news-card">
                         <div class="news-card-content">
                             <span class="news-tag">Regionales</span>
                             <h3>Crónica y actualidad de las principales provincias</h3>
@@ -879,7 +826,7 @@
                         </div>
                     </a>
 
-                    <a href="#" class="news-card">
+                    <a href="noticias.html" class="news-card">
                         <div class="news-card-content">
                             <span class="news-tag">Internacionales</span>
                             <h3>Panorama global, tecnología y tendencias</h3>
@@ -895,23 +842,19 @@
 
         </div>
 
-        <!-- BARRA LATERAL DERECHA -->
         <aside class="sidebar-ads">
             <div class="sidebar-title">Patrocinadores</div>
             
-            <!-- Playlist de Videos Publicitarios Automática -->
             <div class="ad-video-container">
                 <video id="ad-playlist-video" autoplay muted playsinline></video>
             </div>
 
-            <!-- Anuncio Vertical 1 -->
             <div class="ad-banner-vertical">
                 <a href="https://www.facebook.com/share/v/1DX2jrntnr/" target="_blank">
                     <img src="anuncio1.jpg" alt="Publicidad Cachicadán">
                 </a>
             </div>
 
-            <!-- Anuncio Vertical 2 -->
             <div class="ad-banner-vertical">
                 <a href="https://www.facebook.com/share/v/1DX2jrntnr/" target="_blank">
                     <img src="anuncio2.jpg" alt="Publicidad Internet y Televisión">
@@ -925,11 +868,9 @@
         &copy; 2026 MIRAMAX TV. Todos los derechos reservados. Transmisión Oficial en Directo desde Trujillo, Perú.
     </footer>
 
-    <!-- Scripts con Reproductor, Reloj, Visitas, Respaldo y Caja de Comentarios -->
     <script>
-        // 1. Reproductor de TV en Vivo con Detección de Error / Sin Señal
         var liveStreamUrl = "https://vs20.live.opencaster.com/henry_771aca96/index.m3u8";
-        var backupVideoUrl = "anuncio1.mp4"; // Video de respaldo si no hay transmisión
+        var backupVideoUrl = "anuncio1.mp4";
 
         var player = new Clappr.Player({
             source: liveStreamUrl,
@@ -951,16 +892,10 @@
         });
 
         player.on(Clappr.Events.PLAYER_ERROR, function(error) {
-            console.warn("Señal en vivo no disponible. Cambiando a video de respaldo (anuncio1.mp4)...", error);
-            player.configure({
-                source: backupVideoUrl,
-                autoPlay: true,
-                loop: true,
-                mute: false
-            });
+            console.warn("Señal en vivo no disponible. Cambiando a video de respaldo...", error);
+            player.configure({ source: backupVideoUrl, autoPlay: true, loop: true, mute: false });
         });
 
-        // 2. Playlist Automática de Videos Publicitarios en la barra lateral
         const playlist = ["anuncio.mp4", "anuncio1.mp4"];
         let indiceActual = 0;
         const adVideo = document.getElementById('ad-playlist-video');
@@ -968,14 +903,13 @@
         function reproducirSiguienteAnuncio() {
             if (playlist.length === 0) return;
             adVideo.src = playlist[indiceActual];
-            adVideo.play().catch(e => console.log("Autoplay silenciado por políticas del navegador:", e));
+            adVideo.play().catch(e => console.log("Autoplay silenciado:", e));
             indiceActual = (indiceActual + 1) % playlist.length;
         }
 
         adVideo.addEventListener('ended', reproducirSiguienteAnuncio);
         reproducirSiguienteAnuncio();
 
-        // 3. Reloj y Fecha en Tiempo Real
         function actualizarReloj() {
             const ahora = new Date();
             document.getElementById('live-clock').innerText = ahora.toLocaleTimeString();
@@ -985,20 +919,15 @@
         setInterval(actualizarReloj, 1000);
         actualizarReloj();
 
-        // 4. Contador de Visitas Automático
         function gestionarVisitas() {
             let visitas = localStorage.getItem('miramax_visitas');
-            if (!visitas) {
-                visitas = 1420;
-            } else {
-                visitas = parseInt(visitas) + 1;
-            }
+            if (!visitas) visitas = 1420;
+            else visitas = parseInt(visitas) + 1;
             localStorage.setItem('miramax_visitas', visitas);
             document.getElementById('visit-count').innerText = visitas.toLocaleString();
         }
         gestionarVisitas();
 
-        // 5. Sistema de Comentarios Interactivos en Vivo
         const commentForm = document.getElementById('comment-form');
         const commentsList = document.getElementById('comments-list');
 
@@ -1010,30 +939,21 @@
         function agregarComentarioDOM(autor, texto, alPrincipio = true) {
             const div = document.createElement('div');
             div.className = 'comment-item';
-            div.innerHTML = `
-                <div class="comment-author">${escapeHtml(autor)}</div>
-                <p class="comment-text">${escapeHtml(texto)}</p>
-            `;
-            if (alPrincipio) {
-                commentsList.prepend(div);
-            } else {
-                commentsList.appendChild(div);
-            }
+            div.innerHTML = `<div class="comment-author">${escapeHtml(autor)}</div><p class="comment-text">${escapeHtml(texto)}</p>`;
+            if (alPrincipio) commentsList.prepend(div);
+            else commentsList.appendChild(div);
         }
 
         commentForm.addEventListener('submit', function(e) {
             e.preventDefault();
             const autor = document.getElementById('comment-name').value.trim();
             const texto = document.getElementById('comment-text').value.trim();
-
             if (autor && texto) {
                 agregarComentarioDOM(autor, texto, true);
-                
                 let guardados = JSON.parse(localStorage.getItem('miramax_comentarios')) || [];
                 guardados.unshift({ autor, texto });
                 if (guardados.length > 30) guardados.pop();
                 localStorage.setItem('miramax_comentarios', JSON.stringify(guardados));
-
                 document.getElementById('comment-text').value = '';
             }
         });
@@ -1044,6 +964,5 @@
 
         cargarComentarios();
     </script>
-
 </body>
 </html>
