@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MIRAMAX TV - Señal en Vivo, Noticias y Programación desde Trujillo</title>
+    <meta name="description" content="Canal oficial de Miramax TV. Señal en vivo 24/7, noticias de última hora y programación desde Trujillo, Perú.">
     <style>
         :root {
             --tv-orange: #ff6600;
@@ -99,10 +100,7 @@
             object-fit: cover;
         }
 
-        .channel-name {
-            font-size: 22px; font-weight: 900; color: white;
-        }
-
+        .channel-name { font-size: 22px; font-weight: 900; color: white; }
         .channel-name span { color: var(--tv-orange); }
 
         .social-header {
@@ -110,7 +108,7 @@
         }
 
         .social-btn, .net-btn, .news-tab-btn {
-            padding: 7px 14px; border-radius: 4px; text-decoration: none; font-size: 11px; font-weight: bold; text-transform: uppercase; transition: all 0.3s;
+            padding: 7px 12px; border-radius: 4px; text-decoration: none; font-size: 11px; font-weight: bold; text-transform: uppercase; transition: all 0.3s;
         }
 
         .social-btn { background: rgba(255, 102, 0, 0.1); border: 1px solid rgba(255, 102, 0, 0.3); color: white; }
@@ -216,7 +214,7 @@
 
         <div class="social-header">
             <a href="https://miramaxnet.pe/" target="_blank" class="net-btn">🌐 Miramax Net</a>
-            <a href="noticias.html" class="news-tab-btn">📰 Noticias</a>
+            <a href="noticias.html?cat=politica" class="news-tab-btn">📰 Noticias / Secciones</a>
             <a href="https://www.facebook.com/share/v/1DX2jrntnr/" target="_blank" class="social-btn">Facebook</a>
             <a href="https://www.youtube.com/@miramaxtvcanal1136" target="_blank" class="social-btn">YouTube</a>
             <a href="https://www.tiktok.com/@somosmiramax" target="_blank" class="social-btn">TikTok</a>
@@ -296,13 +294,29 @@
             <div class="section-box">
                 <div class="section-title"><span>Noticias Destacadas</span></div>
                 <div class="news-grid">
-                    <a href="noticias.html" class="news-card">
+                    <a href="noticias.html?cat=politica" class="news-card">
                         <div class="news-card-content">
-                            <span class="news-tag">Locales / Cultura</span>
-                            <h3>Gerente edil confirma que libros donados están en bolsas</h3>
-                            <p>Paolo Cueva señaló que estarán a buen recaudo en la Biblioteca Central...</p>
+                            <span class="news-tag">Política</span>
+                            <h3>Consejo Regional debate nuevas medidas de seguridad</h3>
+                            <p>Autoridades evalúan presupuesto destinado a la lucha contra la delincuencia...</p>
                         </div>
-                        <div class="news-footer-info"><span>Redacción Miramax</span><span>Leer artículo</span></div>
+                        <div class="news-footer-info"><span>Redacción Miramax</span><span>Leer más</span></div>
+                    </a>
+                    <a href="noticias.html?cat=deporte" class="news-card">
+                        <div class="news-card-content">
+                            <span class="news-tag">Deporte</span>
+                            <h3>Preparativos intensos de cara al torneo local de fútbol</h3>
+                            <p>Equipos de la región afinan estrategias tácticas bajo la conducción técnica...</p>
+                        </div>
+                        <div class="news-footer-info"><span>Miramax Deportes</span><span>Leer más</span></div>
+                    </a>
+                    <a href="noticias.html?cat=turismo" class="news-card">
+                        <div class="news-card-content">
+                            <span class="news-tag">Turismo</span>
+                            <h3>Ruta Moche atrae a cientos de visitantes este fin de semana</h3>
+                            <p>Complejos arqueológicos y Huanchaco se consolidan como destinos favoritos...</p>
+                        </div>
+                        <div class="news-footer-info"><span>Turismo Regional</span><span>Leer más</span></div>
                     </a>
                 </div>
             </div>
@@ -320,7 +334,6 @@
     <script>
         const videoElement = document.getElementById('live-video');
         videoElement.addEventListener('error', function() {
-            console.warn("Cambiando a video de respaldo por fallo en la señal...");
             videoElement.src = "anuncio1.mp4";
             videoElement.load();
             videoElement.play();
