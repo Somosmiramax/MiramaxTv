@@ -20,19 +20,20 @@
             margin: 0; background-color: var(--dark-bg); color: var(--text-main); line-height: 1.6;
         }
 
-        /* Menú con todas las pestañas solicitadas */
+        /* Menú completo con todas las pestañas solicitadas */
         .news-nav {
-            background-color: #000; padding: 12px 20px; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; border-bottom: 2px solid var(--tv-orange); font-size: 11px; font-weight: bold; text-transform: uppercase;
+            background-color: #000; padding: 12px 20px; display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; border-bottom: 2px solid var(--tv-orange); font-size: 11px; font-weight: bold; text-transform: uppercase;
         }
-        .news-nav a { color: white; text-decoration: none; transition: 0.3s; padding: 4px 8px; border-radius: 4px; }
-        .news-nav a:hover, .news-nav a.active { color: var(--tv-orange); background: rgba(255,102,0,0.1); }
+        .news-nav a { color: white; text-decoration: none; transition: 0.3s; padding: 5px 10px; border-radius: 4px; }
+        .news-nav a:hover, .news-nav a.active { color: var(--tv-orange); background: rgba(255,102,0,0.15); }
 
         .article-layout {
             max-width: 1250px; margin: 30px auto; padding: 0 20px; display: grid; grid-template-columns: 1fr 360px; gap: 30px;
         }
 
         .article-main { min-width: 0; }
-        .back-home { display: inline-block; margin-bottom: 20px; background: rgba(255, 102, 0, 0.15); border: 1px solid var(--tv-orange); color: white; padding: 8px 15px; border-radius: 6px; text-decoration: none; font-weight: bold; font-size: 13px; }
+        .back-home { display: inline-block; margin-bottom: 20px; background: rgba(255, 102, 0, 0.15); border: 1px solid var(--tv-orange); color: white; padding: 8px 15px; border-radius: 6px; text-decoration: none; font-weight: bold; font-size: 13px; transition: 0.3s; }
+        .back-home:hover { background: var(--tv-orange); }
         
         .category-heading { font-size: 14px; font-weight: bold; color: var(--tv-orange-bright); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }
         .article-title { font-size: 28px; font-weight: 900; text-transform: uppercase; line-height: 1.3; margin-bottom: 15px; color: white; }
@@ -40,14 +41,12 @@
         .article-image { width: 100%; max-height: 420px; object-fit: cover; border-radius: 8px; border: 1px solid var(--card-border); margin-bottom: 20px; }
         .article-body p { font-size: 14px; color: #ddd; margin-bottom: 15px; text-align: justify; }
 
-        /* Lista de notas secundarias estilo periódico para cada sección */
         .news-list-section { margin-top: 40px; border-top: 1px solid var(--card-border); padding-top: 20px; }
-        .news-item-card { background: var(--card-bg); border: 1px solid var(--card-border); padding: 15px; border-radius: 6px; margin-bottom: 15px; display: flex; gap: 15px; align-items: center; text-decoration: none; color: inherit; transition: 0.3s; }
+        .news-item-card { background: var(--card-bg); border: 1px solid var(--card-border); padding: 15px; border-radius: 6px; margin-bottom: 15px; display: block; text-decoration: none; color: inherit; transition: 0.3s; }
         .news-item-card:hover { border-color: var(--tv-orange); transform: translateX(5px); }
         .news-item-card h4 { margin: 0 0 5px 0; font-size: 15px; color: white; }
         .news-item-card p { margin: 0; font-size: 12px; color: var(--text-muted); }
 
-        /* Reproductor en vivo flotante lateral */
         .live-sidebar-box {
             background-color: var(--card-bg); border: 2px solid var(--tv-orange); border-radius: 10px; overflow: hidden; position: sticky; top: 20px;
         }
@@ -63,7 +62,7 @@
 </head>
 <body>
 
-    <!-- Menú con todas las pestañas de la foto -->
+    <!-- Menú superior con todas las pestañas -->
     <nav class="news-nav">
         <a href="index.html">🏠 En Vivo</a>
         <a href="noticias.html?cat=politica" id="nav-politica">Política</a>
@@ -81,27 +80,23 @@
         <main class="article-main">
             <a href="index.html" class="back-home">⬅ Regresar a la transmisión principal y programación</a>
 
-            <!-- Contenedor dinámico de la noticia -->
             <div id="noticia-contenido">
                 <div class="category-heading" id="cat-title">Actualidad</div>
-                <h1 class="article-title" id="art-title">Cargando información de la sección...</h1>
+                <h1 class="article-title" id="art-title">Cargando información...</h1>
                 <div class="article-meta" id="art-meta">📅 Actualizado hoy</div>
-                <img src="noticia1.jpg" alt="Imagen de noticia" class="article-image" id="art-img">
+                <img src="noticia1.jpg" alt="Imagen" class="article-image" id="art-img">
                 <div class="article-body" id="art-text">
-                    <p>Selecciona cualquier pestaña superior para ver las notas periodísticas correspondientes a cada categoría en tiempo real.</p>
+                    <p>Selecciona una pestaña superior.</p>
                 </div>
             </div>
 
-            <!-- Sección de otras notas de la misma categoría -->
             <div class="news-list-section">
                 <h3 style="color: white; font-size: 16px; text-transform: uppercase; border-bottom: 2px solid var(--tv-orange); padding-bottom: 5px;">Más notas de la sección</h3>
-                <div id="otras-notas">
-                    <!-- Se llenará automáticamente -->
-                </div>
+                <div id="otras-notas"></div>
             </div>
         </main>
 
-        <!-- Señal en vivo lateral que NUNCA se corta -->
+        <!-- Señal en vivo lateral perpetua -->
         <aside class="live-sidebar">
             <div class="live-sidebar-box">
                 <div class="live-sidebar-header"><span>● SEÑAL EN VIVO</span><span>Miramax TV</span></div>
@@ -112,7 +107,7 @@
                 </div>
                 <div class="live-sidebar-info">
                     <strong>Transmitiendo 24/7</strong>
-                    Disfruta de nuestra programación en directo mientras navegas por las pestañas.
+                    Disfruta de nuestra programación en directo mientras lees las noticias.
                 </div>
             </div>
         </aside>
@@ -120,19 +115,19 @@
 
     <footer>&copy; 2026 MIRAMAX TV. Todos los derechos reservados. Trujillo, Perú.</footer>
 
-    <!-- Script Inteligente para manejar las pestañas y actualizar noticias fácilmente -->
+    <!-- Script de control y actualización de noticias -->
     <script>
-        // BASE DE DATOS DE TUS NOTICIAS (Aquí puedes actualizar, quitar o agregar noticias fácilmente)
+        // 👉 PARA ACTUALIZAR TUS NOTICIAS: Solo edita los textos aquí abajo en cada categoría.
         const baseDeDatosNoticias = {
             politica: {
                 categoria: "Política Regional y Nacional",
                 titulo: "Consejo Regional debate nuevas medidas de seguridad para provincias de La Libertad",
                 meta: "📅 2 de septiembre, 2026 • ⏱️ 4 min de lectura • Redacción Política",
                 imagen: "noticia1.jpg",
-                texto: "TRUJILLO// En una sesión descentralizada, las principales autoridades evaluaron el presupuesto destinado a la lucha contra la delincuencia y el patrullaje integrado junto a la Policía Nacional.",
+                texto: "TRUJILLO// En sesión descentralizada, las principales autoridades evaluaron el presupuesto destinado a la lucha contra la delincuencia y el patrullaje integrado junto a la Policía Nacional para salvaguardar la tranquilidad de los vecinos.",
                 relacionadas: [
                     { titulo: "Aprobación de presupuesto para obras viales en la sierra liberteña", desc: "Gobierno regional destina fondos orientados a mejorar la conectividad." },
-                    { titulo: "Mesa de diálogo abierta con gremios de transportistas", desc: "Acuerdan mesas técnicas para garantizar la tranquilidad en las rutas principales." }
+                    { titulo: "Mesa de diálogo abierta con gremios de transportistas", desc: "Acuerdan mesas técnicas para garantizar la operatividad en las rutas principales." }
                 ]
             },
             deporte: {
@@ -140,7 +135,7 @@
                 titulo: "Preparativos intensos de cara a la nueva fecha del torneo local de fútbol",
                 meta: "📅 2 de septiembre, 2026 • ⏱️ 3 min de lectura • Sección Deportes",
                 imagen: "deporte.jpg",
-                texto: "TRUJILLO// Los equipos de la región afinan estrategias tácticas bajo la conducción de sus comandos técnicos. Todo el análisis detallado en la edición de Miramax Deportes con Katherine Soto Arana.",
+                texto: "TRUJILLO// Los equipos de la región afinan estrategias tácticas bajo la conducción de sus comandos técnicos. Todo el análisis deportivo detallado en la edición de Miramax Deportes.",
                 relacionadas: [
                     { titulo: "Joven promesa trujillana destaca en torneo internacional de ajedrez", desc: "Deportista local deja en alto el nombre de la región en competencia sudamericana." },
                     { titulo: "Inauguran nueva losa deportiva comunitaria en el distrito de Huanchaco", desc: "Proyecto busca fomentar la práctica de disciplinas saludables en la niñez." }
@@ -148,23 +143,23 @@
             },
             economia: {
                 categoria: "Economía y Negocios",
-                titulo: "Comercios locales registran dinamismo comercial en la temporada de mitad de año",
+                titulo: "Comercios locales registran dinamismo comercial en la temporada",
                 meta: "📅 2 de septiembre, 2026 • ⏱️ 3 min de lectura • Economía",
                 imagen: "noticia1.jpg",
-                texto: "TRUJILLO// Emprendedores y pequeños empresarios reportan un incremento en la demanda de servicios turísticos y gastronómicos gracias al flujo interprovincial.",
+                texto: "TRUJILLO// Emprendedores y pequeños empresarios reportan un incremento en la demanda de servicios gracias al flujo interprovincial de visitantes.",
                 relacionadas: [
-                    { titulo: "Campaña de formalización para bodegas y mercados de abastos", desc: "Municipalidad brinda facilidades para pequeños negocios." },
+                    { titulo: "Campaña de formalización para bodegas y mercados de abastos", desc: "Municipalidad brinda facilidades para pequeños negocios locales." },
                     { titulo: "Exportaciones agrícolas de la región continúan liderando índices", desc: "Productos de agroexportación mantienen alta demanda en mercados externos." }
                 ]
             },
             turismo: {
                 categoria: "Turismo y Región",
-                titulo: "Ruta Moche atrae a cientos de visitantes nacionales durante el fin de semana",
+                titulo: "Ruta Moche atrae a cientos de visitantes nacionales e internacionales",
                 meta: "📅 2 de septiembre, 2026 • ⏱️ 5 min de lectura • Turismo",
                 imagen: "trujillo.jpg",
                 texto: "TRUJILLO// Los complejos arqueológicos y el balneario de Huanchaco se consolidan como los destinos preferidos por las familias que buscan historia y gastronomía marina.",
                 relacionadas: [
-                    { titulo: "Festival de la marinera prepara exhibiciones descentralizadas", desc: "Turistas podrán disfrutar de academias abiertas al público." },
+                    { titulo: "Festival cultural prepara exhibiciones descentralizadas", desc: "Turistas podrán disfrutar de academias y muestras abiertas al público." },
                     { titulo: "Hoteles reportan buena ocupación en el litoral liberteño", desc: "Sector hotelero se prepara para recibir delegaciones extranjeras." }
                 ]
             },
@@ -173,37 +168,37 @@
                 titulo: "Campaña de vacunación y prevención llega a los sectores más alejados",
                 meta: "📅 2 de septiembre, 2026 • ⏱️ 3 min de lectura • Salud",
                 imagen: "noticia1.jpg",
-                texto: "TRUJILLO// Brigadas de salud recorren casa por casa para completar esquemas de inmunización y brindar orientación médica gratuita a los vecinos.",
+                texto: "TRUJILLO// Brigadas de salud recorren casa por casa para completar esquemas de inmunización y brindar orientación médica gratuita a las familias.",
                 relacionadas: [
                     { titulo: "Hospital Regional implementa nueva área de atención rápida", desc: "Buscan reducir los tiempos de espera en emergencias médicas." },
-                    { titulo: "Recomendaciones ante los cambios repentinos de clima en la costa", desc: "Especialistas aconsejan el cuidado preventivo en menores de edad y adultos mayores." }
+                    { titulo: "Recomendaciones ante los cambios repentinos de clima en la costa", desc: "Especialistas aconsejan el cuidado preventivo en menores de edad." }
                 ]
             },
             cultura: {
                 categoria: "Arte y Cultura",
-                titulo: "Presentan libro histórico en el marco de las actividades culturales de la ciudad",
+                titulo: "Presentan libro histórico en el marco de las actividades culturales",
                 meta: "📅 2 de septiembre, 2026 • ⏱️ 4 min de lectura • Cultura",
                 imagen: "noticia1.jpg",
-                texto: "TRUJILLO// Escritores y críticos literarios se dieron cita en el auditorio principal para reflexionar sobre la literatura norteña y su influencia en el pensamiento contemporáneo.",
+                texto: "TRUJILLO// Escritores y críticos literarios se dieron cita en el auditorio principal para reflexionar sobre la literatura norteña y su influencia contemporánea.",
                 relacionadas: [
                     { titulo: "Exposición plástica de artistas trujillanos en galería municipal", desc: "Muestra estará abierta de forma gratuita durante todo el mes." },
-                    { titulo: "Talleres de verano gratuitos de teatro y música para jóvenes", desc: "Iniciativa cultural busca descubrir nuevos talentos artísticos." }
+                    { titulo: "Talleres gratuitos de teatro y música para jóvenes talentos", desc: "Iniciativa cultural busca impulsar el desarrollo artístico juvenil." }
                 ]
             },
             mundo: {
                 categoria: "Mundo y Tecnología",
-                titulo: "Avances globales en inteligencia artificial y su impacto en los medios de comunicación",
+                titulo: "Avances globales en inteligencia artificial y su impacto mediático",
                 meta: "📅 2 de septiembre, 2026 • ⏱️ 5 min de lectura • Internacional",
                 imagen: "noticia1.jpg",
-                texto: "Especialistas analizan cómo las nuevas herramientas digitales transforman la manera de producir contenidos informativos a escala internacional.",
+                texto: "Especialistas analizan cómo las nuevas herramientas digitales transforman la manera de producir y consumir contenidos informativos a escala global.",
                 relacionadas: [
-                    { titulo: "Cumbre internacional sobre energías renovables", desc: "Países acuerdan nuevas metas para reducir la huella de carbono." },
-                    { titulo: "Nuevos descubrimientos astronómicos captan la atención global", desc: "Telescopio espacial revela imágenes inéditas de galaxias lejanas." }
+                    { titulo: "Cumbre internacional sobre energías renovables y ecología", desc: "Países acuerdan nuevas metas para reducir la huella de carbono." },
+                    { titulo: "Nuevos descubrimientos astronómicos captan la atención mundial", desc: "Telescopio espacial revela imágenes inéditas de galaxias lejanas." }
                 ]
             },
             peru: {
                 categoria: "Actualidad Nacional",
-                titulo: "Ejecutivo coordina proyectos de infraestructura vial con gobiernos locales",
+                titulo: "Ejecutivo coordina proyectos de infraestructura con gobiernos locales",
                 meta: "📅 2 de septiembre, 2026 • ⏱️ 4 min de lectura • Perú",
                 imagen: "noticia1.jpg",
                 texto: "LIMA// Representantes del gobierno central se reunieron con alcaldes provinciales para destrabar proyectos estancados y acelerar la ejecución de presupuestos.",
@@ -214,22 +209,20 @@
             },
             policial: {
                 categoria: "Sección Policial",
-                titulo: "Operativos policiales conjuntas desarticulan bandas dedicadas al cobro de cupos",
+                titulo: "Operativos policiales conjuntos desarticulan bandas de extorsión",
                 meta: "📅 2 de septiembre, 2026 • ⏱️ 3 min de lectura • Policial",
                 imagen: "noticia1.jpg",
-                texto: "TRUJILLO// Gracias a la oportuna denuncia de los ciudadanos y el trabajo de inteligencia, la policía intervino varios inmuebles arrestando a sospechosos implicados en extorsión.",
+                texto: "TRUJILLO// Gracias a la oportuna denuncia ciudadana y labores de inteligencia, la policía intervino varios inmuebles arrestando a sospechosos implicados en cobro de cupos.",
                 relacionadas: [
-                    { titulo: "Refuerzan patrullaje nocturno en zonas comerciales de la ciudad", desc: "Efectivos policiales y serenazgo intensifican controles de identidad." },
-                    { titulo: "Incautan mercadería ilegal durante operativo en vías principales", desc: "Productos sin documentación formal fueron puestos a disposición de las autoridades." }
+                    { titulo: "Refuerzan patrullaje nocturno en zonas comerciales céntricas", desc: "Efectivos policiales y serenazgo intensifican controles de identidad." },
+                    { titulo: "Incautan mercadería ilegal durante operativo en vías principales", desc: "Productos sin documentación formal fueron puestos a disposición legal." }
                 ]
             }
         };
 
-        // Leer qué categoría pidió el usuario mediante el enlace (?cat=nombre)
         const urlParams = new URLSearchParams(window.location.search);
-        const categoriaActual = urlParams.get('cat') || 'politica'; // Por defecto política si entra directo
+        const categoriaActual = urlParams.get('cat') || 'politica';
 
-        // Rellenar la página con la información de esa categoría
         if (baseDeDatosNoticias[categoriaActual]) {
             const data = baseDeDatosNoticias[categoriaActual];
             document.getElementById('cat-title').innerText = data.categoria;
@@ -238,21 +231,17 @@
             document.getElementById('art-img').src = data.imagen;
             document.getElementById('art-text').innerHTML = `<p class="article-lead">• ${data.texto}</p><p>${data.texto}</p>`;
 
-            // Rellenar notas relacionadas
             const contenedorNotas = document.getElementById('otras-notas');
             contenedorNotas.innerHTML = '';
             data.relacionadas.forEach(nota => {
                 contenedorNotas.innerHTML += `
-                    <a href="#" class="news-item-card">
-                        <div>
-                            <h4>${nota.titulo}</h4>
-                            <p>${nota.desc}</p>
-                        </div>
-                    </a>
+                    <div class="news-item-card">
+                        <h4>${nota.titulo}</h4>
+                        <p>${nota.desc}</p>
+                    </div>
                 `;
             });
 
-            // Marcar visualmente la pestaña activa en el menú
             const tabActiva = document.getElementById('nav-' + categoriaActual);
             if (tabActiva) tabActiva.classList.add('active');
         }
