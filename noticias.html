@@ -39,8 +39,16 @@
         .article-title { font-size: 28px; font-weight: 900; text-transform: uppercase; line-height: 1.3; margin-bottom: 15px; color: white; }
         .article-meta { font-size: 13px; color: var(--text-muted); margin-bottom: 20px; border-left: 3px solid var(--tv-orange); padding-left: 10px; }
         
-        /* Imagen ajustada y centrada para evitar recortes en rostros */
-        .article-image { width: 100%; max-height: 420px; object-fit: cover; object-position: center 25%; border-radius: 8px; border: 1px solid var(--card-border); margin-bottom: 20px; }
+        /* Imagen completa sin recortes (contain) con fondo oscuro elegante */
+        .article-image { 
+            width: 100%; 
+            max-height: 480px; 
+            object-fit: contain; 
+            background-color: #000;
+            border-radius: 8px; 
+            border: 1px solid var(--card-border); 
+            margin-bottom: 20px; 
+        }
         
         .article-body p { font-size: 14px; color: #ddd; margin-bottom: 15px; text-align: justify; }
 
@@ -126,7 +134,7 @@
                 titulo: "Consejo Regional debate nuevas medidas de seguridad para provincias de La Libertad",
                 meta: "📅 2 de septiembre, 2026 • ⏱️ 4 min de lectura • Redacción Política",
                 imagen: "noticia1.jpg",
-                texto: "TRUJILLO// En sesión descentralizada, las principales autoridades evaluaron el presupuesto destinado a la lucha contra la delencuencia y el patrullaje integrado junto a la Policía Nacional para salvaguardar la tranquilidad de los vecinos.",
+                texto: "TRUJILLO// En sesión descentralizada, las principales autoridades evaluaron el presupuesto destinado a la lucha contra la delincuencia y el patrullaje integrado junto a la Policía Nacional para salvaguardar la tranquilidad de los vecinos.",
                 relacionadas: [
                     { titulo: "Aprobación de presupuesto para obras viales en la sierra liberteña", desc: "Gobierno regional destina fondos orientados a mejorar la conectividad." },
                     { titulo: "Mesa de diálogo abierta con gremios de transportistas", desc: "Acuerdan mesas técnicas para garantizar la operatividad en las rutas principales." }
