@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MIRAMAX TV - Señal en Vivo, Noticias y Programación desde Trujillo</title>
-    <meta name="description" content="Canal oficial de Miramax TV. Señal en vivo 24/7, noticias de última hora y programación desde Trujillo, Perú.">
+    <title>MIRAMAX TV - Televisión y Noticias en Vivo desde Trujillo, Perú</title>
+    <meta name="description" content="Portal oficial de Miramax TV. Señal en vivo 24/7, noticias de última hora y programación desde Trujillo, Perú.">
     <style>
         :root {
             --tv-orange: #ff6600;
             --tv-orange-bright: #ff8533;
-            --dark-bg: #0c0c0c;
+            --dark-bg: #0d0d0d;
             --card-bg: #161616;
-            --card-border: rgba(255, 102, 0, 0.3);
+            --card-border: rgba(255, 102, 0, 0.25);
             --text-main: #ffffff;
             --text-muted: #b0b0b0;
         }
@@ -25,46 +25,35 @@
             overflow-x: hidden;
         }
 
-        .animated-bg {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1;
-            background: linear-gradient(-45deg, #0a0500, #140700, #ff6600, #181818);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-        }
-
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .breaking-news {
-            background-color: #000000;
+        /* Barra superior de Última Hora Estilo TV */
+        .breaking-bar {
+            background-color: #000;
             color: white;
-            padding: 10px 0;
+            padding: 8px 20px;
             border-bottom: 2px solid var(--tv-orange);
-            font-size: 14px;
-            white-space: nowrap;
-            overflow: hidden;
+            font-size: 13px;
             display: flex;
             align-items: center;
+            overflow: hidden;
+            white-space: nowrap;
         }
 
-        .breaking-badge {
-            background-color: var(--tv-orange);
+        .breaking-tag {
+            background-color: #e50914;
             color: white;
-            padding: 10px 20px;
+            padding: 4px 10px;
             font-weight: bold;
+            font-size: 11px;
             text-transform: uppercase;
-            font-size: 12px;
+            border-radius: 3px;
             margin-right: 15px;
+            letter-spacing: 1px;
+            flex-shrink: 0;
         }
 
         .breaking-ticker {
             display: inline-block;
-            animation: marquee 30s linear infinite;
+            animation: marquee 35s linear infinite;
         }
 
         @keyframes marquee {
@@ -72,14 +61,14 @@
             100% { transform: translateX(-100%); }
         }
 
+        /* Cabecera Principal */
         header {
-            background: rgba(12, 12, 12, 0.95);
-            backdrop-filter: blur(15px);
-            padding: 15px 40px;
+            background: rgba(12, 12, 12, 0.98);
+            border-bottom: 1px solid var(--card-border);
+            padding: 15px 30px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            border-bottom: 1px solid rgba(255, 102, 0, 0.25);
             flex-wrap: wrap;
             gap: 15px;
             position: sticky;
@@ -87,171 +76,388 @@
             z-index: 1000;
         }
 
-        .logo-container {
+        .logo-area {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
+            text-decoration: none;
         }
 
-        .logo-container img {
-            height: 50px; width: 50px;
+        .logo-area img {
+            height: 48px;
+            width: 48px;
             border-radius: 50%;
             border: 2px solid var(--tv-orange);
             object-fit: cover;
         }
 
-        .channel-name { font-size: 22px; font-weight: 900; color: white; }
-        .channel-name span { color: var(--tv-orange); }
-
-        .social-header {
-            display: flex; gap: 8px; flex-wrap: wrap; align-items: center;
+        .channel-title {
+            font-size: 22px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            color: white;
         }
 
-        .social-btn, .net-btn, .news-tab-btn {
-            padding: 7px 12px; border-radius: 4px; text-decoration: none; font-size: 11px; font-weight: bold; text-transform: uppercase; transition: all 0.3s;
+        .channel-title span {
+            color: var(--tv-orange);
         }
 
-        .social-btn { background: rgba(255, 102, 0, 0.1); border: 1px solid rgba(255, 102, 0, 0.3); color: white; }
-        .social-btn:hover { background: var(--tv-orange); }
-        .net-btn { background: var(--tv-orange); border: 1px solid var(--tv-orange-bright); color: white; }
-        .news-tab-btn { background: #222; border: 1px solid var(--tv-orange); color: white; }
-        .news-tab-btn:hover { background: var(--tv-orange); }
+        /* Menú de Categorías Estilo Portal de Noticias */
+        .portal-nav {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
 
-        .header-widgets { display: flex; align-items: center; gap: 12px; }
-        .live-clock-box { background: rgba(0, 0, 0, 0.8); border: 1px solid var(--card-border); padding: 5px 10px; border-radius: 6px; text-align: right; }
-        #live-clock { font-size: 12px; font-weight: bold; color: white; }
-        #live-date { font-size: 9px; color: var(--tv-orange-bright); text-transform: uppercase; }
-        .visitor-counter { background: rgba(255, 102, 0, 0.2); border: 1px solid var(--tv-orange); padding: 7px 10px; border-radius: 6px; font-size: 11px; font-weight: bold; color: white; }
-        .visitor-counter span { color: var(--tv-orange-bright); }
-        .live-tag-header { background-color: #e50914; color: white; padding: 5px 12px; font-size: 11px; font-weight: bold; border-radius: 20px; }
+        .nav-link {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
 
-        .trujillo-hero {
+        .nav-link:hover, .nav-link.active {
+            background: var(--tv-orange);
+            border-color: var(--tv-orange);
+            box-shadow: 0 0 10px rgba(255, 102, 0, 0.5);
+        }
+
+        .net-badge {
+            background: var(--tv-orange);
+            border-color: var(--tv-orange-bright);
+        }
+
+        /* Widgets de Reloj y Visitas */
+        .header-widgets {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .live-clock-box {
+            background: #000;
+            border: 1px solid var(--card-border);
+            padding: 4px 10px;
+            border-radius: 6px;
+            text-align: right;
+        }
+
+        #live-clock { font-size: 11px; font-weight: bold; color: white; }
+        #live-date { font-size: 8px; color: var(--tv-orange-bright); text-transform: uppercase; }
+
+        .visitor-pill {
+            background: rgba(255, 102, 0, 0.15);
+            border: 1px solid var(--tv-orange);
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: bold;
+            color: white;
+        }
+        .visitor-pill span { color: var(--tv-orange-bright); }
+
+        .live-indicator {
+            background-color: #e50914;
+            color: white;
+            padding: 5px 12px;
+            font-size: 11px;
+            font-weight: bold;
+            border-radius: 20px;
+            letter-spacing: 1px;
+            box-shadow: 0 0 10px rgba(229, 9, 20, 0.6);
+        }
+
+        /* Contenedor Principal (Grid Profesional) */
+        .main-layout {
+            max-width: 1300px;
+            margin: 30px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 30px;
+        }
+
+        .content-main { min-width: 0; }
+
+        /* Reproductor de TV Principal */
+        .tv-player-box {
             position: relative;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.85)), url('trujillo.jpg');
-            background-size: cover; background-position: center;
-            padding: 30px 20px; text-align: center; border-bottom: 3px solid var(--tv-orange); margin-bottom: 30px;
+            background: #000;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 2px solid var(--tv-orange);
+            box-shadow: 0 10px 30px rgba(255, 102, 0, 0.2);
+            height: 480px;
+            margin-bottom: 25px;
         }
 
-        .trujillo-hero h1 { margin: 0; font-size: 24px; color: white; text-transform: uppercase; }
-        .trujillo-hero p { margin: 6px 0 0 0; color: var(--tv-orange-bright); font-size: 13px; font-weight: bold; }
-
-        .main-container {
-            max-width: 1250px; margin: 0 auto 40px auto; padding: 0 20px; display: grid; grid-template-columns: 1fr 340px; gap: 30px;
+        .tv-player-box video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
-        .content-area { min-width: 0; }
-
-        .broadcast-container {
-            position: relative; background: #000; border-radius: 10px; overflow: hidden; border: 2px solid var(--tv-orange); margin-bottom: 20px; height: 480px;
+        /* Sección de Comentarios en Directo */
+        .comments-box {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
         }
 
-        .broadcast-container video { width: 100%; height: 100%; object-fit: cover; }
-
-        .comments-section {
-            background-color: var(--card-bg); border: 1px solid var(--card-border); border-radius: 10px; padding: 20px; margin-bottom: 35px;
+        .comments-title {
+            font-size: 15px;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            border-bottom: 2px solid var(--tv-orange);
+            padding-bottom: 6px;
         }
 
-        .comments-title { font-size: 16px; font-weight: bold; color: white; margin-bottom: 15px; text-transform: uppercase; border-bottom: 2px solid var(--tv-orange); padding-bottom: 6px; }
-        .comment-form { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
-        .comment-input, .comment-textarea { background: rgba(0, 0, 0, 0.7); border: 1px solid var(--card-border); border-radius: 6px; padding: 10px 14px; color: white; font-size: 13px; }
-        .comment-textarea { resize: vertical; height: 70px; }
-        .comment-submit-btn { background-color: var(--tv-orange); color: white; border: none; padding: 10px 20px; border-radius: 6px; font-weight: bold; cursor: pointer; text-transform: uppercase; align-self: flex-end; }
-        .comments-list { display: flex; flex-direction: column; gap: 12px; max-height: 250px; overflow-y: auto; }
-        .comment-item { background: rgba(0, 0, 0, 0.5); border-left: 3px solid var(--tv-orange); padding: 10px 14px; border-radius: 4px; font-size: 13px; }
-        .comment-author { font-weight: bold; color: var(--tv-orange-bright); margin-bottom: 4px; }
-        .comment-text { color: #ddd; margin: 0; word-break: break-word; }
+        .comment-form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
 
-        .section-box { margin-top: 35px; }
-        .section-title { font-size: 18px; font-weight: bold; margin-bottom: 20px; border-bottom: 2px solid rgba(255, 102, 0, 0.3); padding-bottom: 8px; color: white; text-transform: uppercase; }
-        .shows-grid, .news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 20px; }
-        .show-card, .news-card { background-color: var(--card-bg); border-radius: 8px; overflow: hidden; border: 1px solid var(--card-border); text-decoration: none; color: inherit; display: flex; flex-direction: column; transition: 0.3s; }
-        .show-card:hover, .news-card:hover { border-color: var(--tv-orange); transform: translateY(-3px); }
-        .show-img-container { width: 100%; height: 220px; background: #000; overflow: hidden; }
-        .show-img-container img { width: 100%; height: 100%; object-fit: cover; object-position: center 25%; }
-        .show-info, .news-card-content { padding: 15px; flex-grow: 1; }
-        .show-time, .news-tag { font-size: 11px; font-weight: bold; color: var(--tv-orange-bright); text-transform: uppercase; margin-bottom: 5px; }
-        .show-info h3, .news-card h3 { margin: 0 0 6px 0; font-size: 15px; color: white; }
-        .show-info p, .news-card p { margin: 0; color: var(--text-muted); font-size: 12px; }
-        .news-footer-info { padding: 10px 18px; background: rgba(0,0,0,0.4); border-top: 1px solid rgba(255,255,255,0.05); font-size: 11px; color: #888; display: flex; justify-content: space-between; }
+        .comment-input, .comment-textarea {
+            background: rgba(0,0,0,0.6);
+            border: 1px solid var(--card-border);
+            border-radius: 6px;
+            padding: 10px;
+            color: white;
+            font-size: 13px;
+        }
+        .comment-textarea { height: 60px; resize: vertical; }
+        .comment-submit {
+            background: var(--tv-orange);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            align-self: flex-end;
+            font-size: 12px;
+            transition: 0.3s;
+        }
+        .comment-submit:hover { background: #e55c00; }
 
-        .sidebar-ads { display: flex; flex-direction: column; gap: 20px; }
-        .sidebar-title { font-size: 16px; font-weight: bold; color: white; border-bottom: 2px solid var(--tv-orange); padding-bottom: 6px; text-transform: uppercase; }
-        .ad-banner-vertical, .ad-video-container { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 10px; overflow: hidden; }
-        .ad-banner-vertical img, .ad-video-container video { width: 100%; display: block; max-height: 480px; object-fit: contain; background: #000; }
+        .comments-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-height: 220px;
+            overflow-y: auto;
+        }
 
-        .whatsapp-float { position: fixed; bottom: 25px; right: 25px; z-index: 9999; display: flex; align-items: center; background-color: #25d366; color: white; padding: 10px 18px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 14px; gap: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
-        .whatsapp-float img { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; }
+        .comment-item {
+            background: rgba(0,0,0,0.4);
+            border-left: 3px solid var(--tv-orange);
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+        .comment-author { font-weight: bold; color: var(--tv-orange-bright); margin-bottom: 2px; }
+        .comment-text { color: #ddd; margin: 0; }
 
-        footer { text-align: center; padding: 30px; background-color: #080808; color: #777; margin-top: 50px; border-top: 1px solid rgba(255,102,0,0.2); font-size: 12px; }
+        /* Cuadrículas de Programas y Noticias */
+        .section-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            text-transform: uppercase;
+            border-bottom: 2px solid var(--tv-orange);
+            padding-bottom: 6px;
+            margin: 30px 0 20px 0;
+            letter-spacing: 1px;
+        }
+
+        .grid-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .card-item {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            overflow: hidden;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            transition: 0.3s;
+        }
+
+        .card-item:hover {
+            border-color: var(--tv-orange);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(255, 102, 0, 0.2);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 180px;
+            background: #000;
+            overflow: hidden;
+        }
+
+        .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.3s;
+        }
+        .card-item:hover .card-img img { transform: scale(1.05); }
+
+        .card-body { padding: 15px; flex-grow: 1; display: flex; flex-direction: column; }
+        .card-tag { font-size: 10px; font-weight: bold; color: var(--tv-orange-bright); text-transform: uppercase; margin-bottom: 5px; }
+        .card-body h3 { margin: 0 0 8px 0; font-size: 14px; color: white; line-height: 1.4; }
+        .card-body p { margin: 0; font-size: 12px; color: var(--text-muted); flex-grow: 1; }
+        .card-footer { padding: 8px 15px; background: rgba(0,0,0,0.3); border-top: 1px solid rgba(255,255,255,0.05); font-size: 10px; color: #888; }
+
+        /* Barra Lateral (Patrocinadores y Videos) */
+        .sidebar-right {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .sidebar-box {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .sidebar-header {
+            background: #000;
+            color: white;
+            padding: 10px 15px;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            border-bottom: 2px solid var(--tv-orange);
+        }
+
+        .sidebar-content video, .sidebar-content img {
+            width: 100%;
+            display: block;
+            object-fit: contain;
+            background: #000;
+            max-height: 420px;
+        }
+
+        /* Botón Flotante WhatsApp */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 25px; right: 25px; z-index: 9999;
+            display: flex; align-items: center; gap: 10px;
+            background-color: #25d366; color: white;
+            padding: 10px 18px; border-radius: 50px;
+            text-decoration: none; font-weight: bold; font-size: 14px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            transition: 0.3s;
+        }
+        .whatsapp-float img { width: 30px; height: 30px; border-radius: 50%; object-fit: cover; }
+        .whatsapp-float:hover { transform: scale(1.08); background-color: #20ba5a; }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: #080808;
+            color: #777;
+            margin-top: 50px;
+            border-top: 1px solid var(--card-border);
+            font-size: 12px;
+        }
 
         @media (max-width: 900px) {
-            .main-container { grid-template-columns: 1fr; }
-            header { flex-direction: column; text-align: center; }
+            .main-layout { grid-template-columns: 1fr; }
+            header { flex-direction: column; text-align: center; padding: 15px; }
+            .portal-nav { justify-content: center; }
+            .header-widgets { justify-content: center; }
         }
     </style>
 </head>
 <body>
 
-    <div class="animated-bg"></div>
+    <!-- Barra de Última Hora -->
+    <div class="breaking-bar">
+        <span class="breaking-tag">EN VIVO 24/7</span>
+        <div class="breaking-ticker">
+            🔴 Transmisión oficial en alta definición desde la ciudad de Trujillo • Sigue nuestra programación periodística, cultural y de entretenimiento con los hechos más destacados de la región.
+        </div>
+    </div>
 
+    <!-- Cabecera y Menú de Categorías -->
+    <header>
+        <a href="index.html" class="logo-area">
+            <img src="logo.jpg" alt="Miramax TV Logo">
+            <div class="channel-title">MIRAMAX <span>TV</span></div>
+        </a>
+
+        <nav class="portal-nav">
+            <a href="https://miramaxnet.pe/" target="_blank" class="nav-link net-badge">🌐 Miramax Net</a>
+            <a href="noticias.html?cat=politica" class="nav-link">Política</a>
+            <a href="noticias.html?cat=deporte" class="nav-link">Deporte</a>
+            <a href="noticias.html?cat=economia" class="nav-link">Economía</a>
+            <a href="noticias.html?cat=turismo" class="nav-link">Turismo</a>
+            <a href="noticias.html?cat=salud" class="nav-link">Salud</a>
+            <a href="noticias.html?cat=cultura" class="nav-link">Cultura</a>
+            <a href="noticias.html?cat=mundo" class="nav-link">Mundo</a>
+            <a href="noticias.html?cat=peru" class="nav-link">Perú</a>
+            <a href="noticias.html?cat=policial" class="nav-link">Policial</a>
+        </nav>
+
+        <div class="header-widgets">
+            <div class="live-clock-box">
+                <div id="live-clock">00:00:00</div>
+                <div id="live-date">Cargando...</div>
+            </div>
+            <div class="visitor-pill">👁️ <span id="visit-count">1,420</span></div>
+            <div class="live-indicator">● EN VIVO</div>
+        </div>
+    </header>
+
+    <!-- Botón Flotante WhatsApp -->
     <a href="https://wa.me/51922110371?text=¡Hola!%20Vi%20Miramax%20TV%20y%20deseo%20más%20información." class="whatsapp-float" target="_blank">
         <img src="whatsapp.jpg" alt="WhatsApp">
         <span>WhatsApp</span>
     </a>
 
-    <div class="breaking-news">
-        <div class="breaking-badge">ÚLTIMO MINUTO</div>
-        <div class="breaking-ticker">
-            🔴 Transmisión en vivo 24/7 en alta definición desde Trujillo, Perú • Sigue nuestra programación exclusiva y cobertura periodística con las noticias más destacadas de la región.
-        </div>
-    </div>
-
-    <header>
-        <div class="logo-container">
-            <img src="logo.jpg" alt="Miramax TV Logo">
-            <div class="channel-name">MIRAMAX <span>TV</span></div>
-        </div>
-
-        <div class="social-header">
-            <a href="https://miramaxnet.pe/" target="_blank" class="net-btn">🌐 Miramax Net</a>
-            <a href="noticias.html?cat=politica" class="news-tab-btn">📰 Noticias / Secciones</a>
-            <a href="https://www.facebook.com/share/v/1DX2jrntnr/" target="_blank" class="social-btn">Facebook</a>
-            <a href="https://www.youtube.com/@miramaxtvcanal1136" target="_blank" class="social-btn">YouTube</a>
-            <a href="https://www.tiktok.com/@somosmiramax" target="_blank" class="social-btn">TikTok</a>
-            <a href="https://www.instagram.com/miramaxtv_oficial/" target="_blank" class="social-btn">Instagram</a>
-        </div>
-
-        <div class="header-widgets">
-            <div class="live-clock-box">
-                <div id="live-clock">00:00:00</div>
-                <div id="live-date">Cargando fecha...</div>
-            </div>
-            <div class="visitor-counter">👁️ Visitas: <span id="visit-count">1,420</span></div>
-            <div class="live-tag-header">● EN VIVO</div>
-        </div>
-    </header>
-
-    <div class="trujillo-hero">
-        <h1>Señal Oficial desde la Ciudad de Trujillo</h1>
-        <p>Cobertura Informativa y Entretenimiento Sin Límites</p>
-    </div>
-
-    <main class="main-container">
-        <div class="content-area">
-            
-            <div class="broadcast-container">
+    <!-- Contenido Principal -->
+    <main class="main-layout">
+        
+        <div class="content-main">
+            <!-- Reproductor de Video HLS -->
+            <div class="tv-player-box">
                 <video id="live-video" controls autoplay playsinline muted>
                     <source src="https://vs20.live.opencaster.com/henry_771aca96/index.m3u8" type="application/x-mpegURL">
-                    Tu navegador no soporta transmisiones en vivo.
+                    Tu navegador no soporta la señal en vivo.
                 </video>
             </div>
 
-            <div class="comments-section">
-                <div class="comments-title">💬 Comentarios en Directo</div>
+            <!-- Caja de Comentarios Interactiva -->
+            <div class="comments-box">
+                <div class="comments-title">💬 Comentarios y Saludos en Directo</div>
                 <form class="comment-form" id="comment-form">
-                    <input type="text" id="comment-name" class="comment-input" placeholder="Tu nombre o usuario..." required>
-                    <textarea id="comment-text" class="comment-textarea" placeholder="Escribe tu mensaje o saludo..." required></textarea>
-                    <button type="submit" class="comment-submit-btn">Enviar Comentario</button>
+                    <input type="text" id="comment-name" class="comment-input" placeholder="Tu nombre..." required>
+                    <textarea id="comment-text" class="comment-textarea" placeholder="Escribe tu mensaje para la transmisión..." required></textarea>
+                    <button type="submit" class="comment-submit">Enviar Comentario</button>
                 </form>
                 <div class="comments-list" id="comments-list">
                     <div class="comment-item">
@@ -261,76 +467,94 @@
                 </div>
             </div>
 
-            <div class="section-box">
-                <div class="section-title"><span>Nuestra Programación</span></div>
-                <div class="shows-grid">
-                    <div class="show-card">
-                        <div class="show-img-container"><img src="programa1.jpg" alt="Edición Matinal"></div>
-                        <div class="show-info">
-                            <div class="show-time">Lunes a Viernes • 8:00 AM</div>
-                            <h3>Edición Matinal</h3>
-                            <p>Las noticias más importantes para empezar bien el día.</p>
-                        </div>
+            <!-- Sección de Programación -->
+            <div class="section-title">Nuestra Programación</div>
+            <div class="grid-cards">
+                <div class="card-item">
+                    <div class="card-img"><img src="programa1.jpg" alt="Matinal"></div>
+                    <div class="card-body">
+                        <span class="card-tag">Lunes a Viernes • 8:00 AM</span>
+                        <h3>Edición Matinal</h3>
+                        <p>Las noticias de mayor relevancia para empezar el día con entrevistas en directo.</p>
                     </div>
-                    <div class="show-card">
-                        <div class="show-img-container"><img src="deporte.jpg" alt="Miramax Deportes"></div>
-                        <div class="show-info">
-                            <div class="show-time">Lunes a Viernes • 9:30 AM</div>
-                            <h3>Miramax Deportes</h3>
-                            <p>Conducción: Katherine Soto Arana. Toda la información deportiva.</p>
-                        </div>
+                </div>
+                <div class="card-item">
+                    <div class="card-img"><img src="deporte.jpg" alt="Deportes"></div>
+                    <div class="card-body">
+                        <span class="card-tag">Lunes a Viernes • 9:30 AM</span>
+                        <h3>Miramax Deportes</h3>
+                        <p>Conducción: Katherine Soto Arana. Análisis y actualidad deportiva completa.</p>
                     </div>
-                    <div class="show-card">
-                        <div class="show-img-container"><img src="programa3.jpg" alt="Edición Especial"></div>
-                        <div class="show-info">
-                            <div class="show-time">Sábados • 7:00 PM</div>
-                            <h3>Edición Especial Central</h3>
-                            <p>Un resumen detallado con los reportajes semanales.</p>
-                        </div>
+                </div>
+                <div class="card-item">
+                    <div class="card-img"><img src="programa3.jpg" alt="Especial"></div>
+                    <div class="card-body">
+                        <span class="card-tag">Sábados • 7:00 PM</span>
+                        <h3>Edición Especial Central</h3>
+                        <p>Resumen detallado con informes especiales y reportajes de investigación.</p>
                     </div>
                 </div>
             </div>
 
-            <div class="section-box">
-                <div class="section-title"><span>Noticias Destacadas</span></div>
-                <div class="news-grid">
-                    <a href="noticias.html?cat=politica" class="news-card">
-                        <div class="news-card-content">
-                            <span class="news-tag">Política</span>
-                            <h3>Consejo Regional debate nuevas medidas de seguridad</h3>
-                            <p>Autoridades evalúan presupuesto destinado a la lucha contra la delincuencia...</p>
-                        </div>
-                        <div class="news-footer-info"><span>Redacción Miramax</span><span>Leer más</span></div>
-                    </a>
-                    <a href="noticias.html?cat=deporte" class="news-card">
-                        <div class="news-card-content">
-                            <span class="news-tag">Deporte</span>
-                            <h3>Preparativos intensos de cara al torneo local de fútbol</h3>
-                            <p>Equipos de la región afinan estrategias tácticas bajo la conducción técnica...</p>
-                        </div>
-                        <div class="news-footer-info"><span>Miramax Deportes</span><span>Leer más</span></div>
-                    </a>
-                    <a href="noticias.html?cat=turismo" class="news-card">
-                        <div class="news-card-content">
-                            <span class="news-tag">Turismo</span>
-                            <h3>Ruta Moche atrae a cientos de visitantes este fin de semana</h3>
-                            <p>Complejos arqueológicos y Huanchaco se consolidan como destinos favoritos...</p>
-                        </div>
-                        <div class="news-footer-info"><span>Turismo Regional</span><span>Leer más</span></div>
-                    </a>
-                </div>
+            <!-- Sección de Noticias Destacadas -->
+            <div class="section-title">Noticias del Día</div>
+            <div class="grid-cards">
+                <a href="noticias.html?cat=politica" class="card-item">
+                    <div class="card-img"><img src="noticia1.jpg" alt="Política"></div>
+                    <div class="card-body">
+                        <span class="card-tag">Política</span>
+                        <h3>Consejo Regional debate nuevas medidas de seguridad</h3>
+                        <p>Autoridades evalúan presupuesto destinado a la lucha contra la delincuencia...</p>
+                    </div>
+                    <div class="card-footer">Redacción Miramax</div>
+                </a>
+                <a href="noticias.html?cat=deporte" class="card-item">
+                    <div class="card-img"><img src="deporte.jpg" alt="Deporte"></div>
+                    <div class="card-body">
+                        <span class="card-tag">Deporte</span>
+                        <h3>Preparativos intensos de cara al torneo local de fútbol</h3>
+                        <p>Equipos de la región afinan estrategias tácticas bajo la conducción técnica...</p>
+                    </div>
+                    <div class="card-footer">Sección Deportes</div>
+                </a>
+                <a href="noticias.html?cat=turismo" class="card-item">
+                    <div class="card-img"><img src="trujillo.jpg" alt="Turismo"></div>
+                    <div class="card-body">
+                        <span class="card-tag">Turismo</span>
+                        <h3>Ruta Moche atrae a cientos de visitantes</h3>
+                        <p>Complejos arqueológicos y Huanchaco se consolidan como destinos favoritos...</p>
+                    </div>
+                    <div class="card-footer">Turismo Regional</div>
+                </a>
             </div>
         </div>
 
-        <aside class="sidebar-ads">
-            <div class="sidebar-title">Patrocinadores</div>
-            <div class="ad-video-container"><video id="ad-playlist-video" autoplay muted playsinline></video></div>
-            <div class="ad-banner-vertical"><a href="https://www.facebook.com/share/v/1DX2jrntnr/" target="_blank"><img src="anuncio1.jpg" alt="Anuncio 1"></a></div>
+        <!-- Barra Lateral de Patrocinadores -->
+        <aside class="sidebar-right">
+            <div class="sidebar-box">
+                <div class="sidebar-header">Patrocinadores y Avisos</div>
+                <div class="sidebar-content">
+                    <video id="ad-playlist-video" autoplay muted playsinline></video>
+                </div>
+            </div>
+
+            <div class="sidebar-box">
+                <div class="sidebar-header">Publicidad Destacada</div>
+                <div class="sidebar-content">
+                    <a href="https://www.facebook.com/share/v/1DX2jrntnr/" target="_blank">
+                        <img src="anuncio1.jpg" alt="Publicidad">
+                    </a>
+                </div>
+            </div>
         </aside>
+
     </main>
 
-    <footer>&copy; 2026 MIRAMAX TV. Todos los derechos reservados. Trujillo, Perú.</footer>
+    <footer>
+        &copy; 2026 MIRAMAX TV. Todos los derechos reservados. Transmisión Oficial en Directo desde Trujillo, Perú.
+    </footer>
 
+    <!-- Scripts de Funcionalidad -->
     <script>
         const videoElement = document.getElementById('live-video');
         videoElement.addEventListener('error', function() {
