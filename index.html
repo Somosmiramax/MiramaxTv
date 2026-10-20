@@ -189,19 +189,20 @@
         /* Selector de Canales Estilo TV */
         .channels-bar {
             display: flex;
-            gap: 12px;
+            gap: 10px;
             margin-bottom: 12px;
             background: #111;
             padding: 10px;
             border-radius: 8px;
             border: 1px solid var(--card-border);
+            flex-wrap: wrap;
         }
 
         .channel-btn {
             background: rgba(255, 255, 255, 0.08);
             border: 1px solid rgba(255, 255, 255, 0.15);
             color: white;
-            padding: 8px 16px;
+            padding: 8px 14px;
             border-radius: 6px;
             font-size: 12px;
             font-weight: bold;
@@ -498,8 +499,9 @@
             
             <!-- Selector de Canales -->
             <div class="channels-bar">
-                <button class="channel-btn active" onclick="cambiarCanal('https://vs20.live.opencaster.com/henry_771aca96/index.m3u8', this)">📺 Miramax TV (En Vivo)</button>
+                <button class="channel-btn active" onclick="cambiarCanal('https://vs20.live.opencaster.com/henry_771aca96/index.m3u8', this)">📺 Miramax TV</button>
                 <button class="channel-btn" onclick="cambiarCanal('https://vs20.live.opencaster.com/cinevip4k_9be1e39f/index.m3u8', this)">🎬 Cine Vip 4K</button>
+                <button class="channel-btn" onclick="cambiarCanal('https://5eaccbab48461.streamlock.net:1936/dancefm_1/dancefm_1/chunklist_w1423996804.m3u8', this)">🎵 Dance FM</button>
             </div>
 
             <!-- Reproductor de Video HLS -->
