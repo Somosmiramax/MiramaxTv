@@ -186,6 +186,43 @@
             box-shadow: 0 0 10px rgba(229, 9, 20, 0.6);
         }
 
+        /* Selector de Canales Estilo TV */
+        .channels-bar {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 12px;
+            background: #111;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid var(--card-border);
+        }
+
+        .channel-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .channel-btn:hover {
+            background: rgba(255, 102, 0, 0.3);
+        }
+
+        .channel-btn.active {
+            background: var(--tv-orange);
+            border-color: var(--tv-orange-bright);
+            box-shadow: 0 0 12px rgba(255, 102, 0, 0.5);
+        }
+
         /* Contenedor Principal (Grid Profesional) */
         .main-layout {
             max-width: 1300px;
@@ -458,6 +495,13 @@
     <main class="main-layout">
         
         <div class="content-main">
+            
+            <!-- Selector de Canales -->
+            <div class="channels-bar">
+                <button class="channel-btn active" onclick="cambiarCanal('https://vs20.live.opencaster.com/henry_771aca96/index.m3u8', this)">📺 Miramax TV (En Vivo)</button>
+                <button class="channel-btn" onclick="cambiarCanal('https://vs20.live.opencaster.com/cinevip4k_9be1e39f/index.m3u8', this)">🎬 Cine Vip 4K</button>
+            </div>
+
             <!-- Reproductor de Video HLS -->
             <div class="tv-player-box">
                 <video id="live-video" controls autoplay playsinline muted>
@@ -569,27 +613,32 @@
         &copy; 2026 MIRAMAX TV. Todos los derechos reservados. Transmisión Oficial en Directo desde Trujillo, Perú.
     </footer>
 
-    <!-- Scripts de Funcionalidad y Contador Real -->
+    <!-- Scripts de Funcionalidad y Cambio de Canales -->
     <script>
-        // Contador de visitas real (Incrementa solo por usuario único real al cargar la página)
+        // Función para cambiar de canal en el reproductor en vivo
+        function cambiarCanal(urlStream, boton) {
+            const video = document.getElementById('live-video');
+            video.src = urlStream;
+            video.load();
+            video.play().catch(e => console.log("Reproducción automática silenciada"));
+
+            // Actualizar estilo activo en los botones de canales
+            document.querySelectorAll('.channel-btn').forEach(btn => btn.classList.remove('active'));
+            boton.classList.add('active');
+        }
+
+        // Contador de visitas real
         async function registrarVisitaReal() {
             try {
-                // Usamos un identificador único para Miramax TV en un contador global en la nube gratuito
                 const respuesta = await fetch('https://api.countapi.xyz/hit/miramaxtv-trujillo-oficial/visitas');
                 const datos = await respuesta.json();
                 document.getElementById('visit-count').innerText = datos.value.toLocaleString();
             } catch (error) {
-                // Si la API falla por bloqueo de red, usamos un respaldo seguro basado en localStorage local
-                let visitasLocales = localStorage.getItem('miramax_visitas_real');
-                if (!visitasLocales) {
-                    visitasLocales = 1540; // Base inicial real
-                } else {
-                    // Solo suma 1 si ha pasado más de 1 hora desde la última visita del mismo navegador
-                    if (!sessionStorage.getItem('miramax_contado')) {
-                        visitasLocales = parseInt(visitasLocales) + 1;
-                        localStorage.setItem('miramax_visitas_real', visitasLocales);
-                        sessionStorage.setItem('miramax_contado', 'true');
-                    }
+                let visitasLocales = localStorage.getItem('miramax_visitas_real') || 1540;
+                if (!sessionStorage.getItem('miramax_contado')) {
+                    visitasLocales = parseInt(visitasLocales) + 1;
+                    localStorage.setItem('miramax_visitas_real', visitasLocales);
+                    sessionStorage.setItem('miramax_contado', 'true');
                 }
                 document.getElementById('visit-count').innerText = parseInt(visitasLocales).toLocaleString();
             }
